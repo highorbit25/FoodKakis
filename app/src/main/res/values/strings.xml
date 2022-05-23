@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FoodKakis</string>
+    <string name="sign_in_with_google" />
+    <string name="id" />
+    <string name="example" />
+    <string name="name" />
+    <string name="email_address" />
+    <string name="sign_out" />
 </resources>

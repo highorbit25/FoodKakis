@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "319959386482",
+    "project_id": "foodkakis-e32aa",
+    "storage_bucket": "foodkakis-e32aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319959386482:android:bda4aaa57d37cec6c9f5eb",
+        "android_client_info": {
+          "package_name": "com.orbital.foodkakis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319959386482-dhob9at65bepjbcmj72436k6i87p7avf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orbital.foodkakis",
+            "certificate_hash": "e30068ec8c2e6c62ec5407d94bf75f71a29f77c4"
+          }
+        },
+        {
+          "client_id": "319959386482-fn880e8p7u7hjv83hcbgen6r4hhhs0eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTwugahPdsUxpiuOip8Fq8cUUClDlUMQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319959386482-fn880e8p7u7hjv83hcbgen6r4hhhs0eb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
