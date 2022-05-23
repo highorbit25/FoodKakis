@@ -8,15 +8,15 @@
     android:padding="40dp"
     tools:context=".SignInActivity">
 
-    <ImageView
-        android:id="@+id/welcome_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_welcome" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/welcome_imageView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="250dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:srcCompat="@drawable/ic_welcome" />-->
 
     <Button
         android:id="@+id/sign_in_btn"
@@ -24,15 +24,40 @@
         android:layout_height="60dp"
         android:layout_marginBottom="20dp"
         android:background="#fff"
-        android:drawableStart="@drawable/ic_google"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="@string/sign_in_with_google"
         android:textAllCaps="false"
         android:textSize="16sp"
+        app:icon="@drawable/ic_google"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/sign_in_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150sp"
+        android:text="@string/full_belly_happy_heart"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connect_through_food"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/sign_in_msg"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_msg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

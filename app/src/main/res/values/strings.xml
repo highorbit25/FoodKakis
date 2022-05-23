@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">FoodKakis</string>
-    <string name="sign_in_with_google" />
-    <string name="id" />
-    <string name="example" />
-    <string name="name" />
-    <string name="email_address" />
-    <string name="sign_out" />
+    <string name="sign_in_with_google">Sign in With Google</string>
+    <string name="example">Example</string>
+    <string name="id">ID</string>
+    <string name="name">Name</string>
+    <string name="email_address">Email address</string>
+    <string name="sign_out">Sign out</string>
+    <string name="profile_page">Profile Page</string>
+    <string name="full_belly_happy_heart">Full Belly, Happy Heart</string>
+    <string name="connect_through_food">Connect Through Food</string>
 </resources>
