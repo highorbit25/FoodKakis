@@ -29,6 +29,7 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
             finish()
+//            testing branching
         }
     }
 }
