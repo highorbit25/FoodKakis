@@ -75,7 +75,9 @@ class SignInActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("SignInActivity", "signInWithCredential:success")
-                    val intent = Intent(this, DashboardActivity::class.java)
+//                    val intent = Intent(this, DashboardActivity::class.java)
+                    // temporary redirect to ProfileActivity instead of Dashboard for MS1
+                    val intent = Intent(this, ProfileActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {

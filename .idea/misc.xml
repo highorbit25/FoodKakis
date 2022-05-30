@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/ic_flight.xml" value="0.173" />
-        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_dashboard.xml" value="0.20923913043478262" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/ic_google.xml" value="0.161" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/ic_welcome.xml" value="0.246" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_dashboard.xml" value="0.18840579710144928" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_main.xml" value="0.13903985507246377" />
-        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_sign_in.xml" value="0.17654508611955422" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_profile.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
         <entry key="..\:/Users/baobi/OneDrive - National University of Singapore/Desktop/FoodKakis - Orbital/Kotlin/TestApp/app/src/main/res/drawable/ic_google.xml" value="0.173" />
         <entry key="..\:/Users/baobi/OneDrive - National University of Singapore/Desktop/FoodKakis - Orbital/Kotlin/TestApp/app/src/main/res/drawable/ic_signin_background.xml" value="0.173" />
         <entry key="..\:/Users/baobi/OneDrive - National University of Singapore/Desktop/FoodKakis - Orbital/Kotlin/TestApp/app/src/main/res/drawable/ic_welcome.xml" value="0.173" />
