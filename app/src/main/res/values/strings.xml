@@ -9,4 +9,13 @@
     <string name="profile_page">Profile Page</string>
     <string name="full_belly_happy_heart">Full Belly, Happy Heart</string>
     <string name="connect_through_food">Connect Through Food</string>
+    <string name="login_bg">login_bg</string>
+    <string name="sign_in">Sign In</string>
+    <string name="text_logo">text_logo</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="by_continuing_you_agree_to_our_terms_of_service_and_privacy_policy">By continuing, you agree to our Terms of Service and Privacy Policy.</string>
+    <string name="sign_in_with_email_wip">Sign in With Email (WIP)</string>
+    <string name="sign_in_with_google_use_this">Sign in With Google (USE THIS)</string>
+    <string name="don_t_have_an_account_sign_up_wip">Don\'t have an account? Sign Up (WIP)</string>
 </resources>
