@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="0dp"
-    tools:context=".SignInActivity">
+    tools:context=".ForgetActivity">
 
     <Button
-        android:id="@+id/sign_in_btn"
+        android:id="@+id/btnResetAccount"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -18,34 +18,14 @@
         android:background="@color/colorPrimary"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
-        android:text="@string/sign_in_with_google"
+        android:text="Reset my account"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:icon="@drawable/ic_google"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_btn_email" />
-
-    <Button
-        android:id="@+id/sign_in_btn_email"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/colorPrimary"
-        android:paddingStart="40dp"
-        android:paddingEnd="40dp"
-        android:text="@string/sign_in_with_email"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:icon="@drawable/ic_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/privacy_agreement" />
+        app:layout_constraintTop_toBottomOf="@+id/textSendResetEmail" />
 
     <ImageView
         android:id="@+id/login_bg"
@@ -70,11 +50,11 @@
         app:srcCompat="@drawable/text_logo" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textResetAcc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/sign_in"
+        android:text="Reset Account"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -84,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/login_bg" />
 
     <EditText
-        android:id="@+id/signInEmail"
+        android:id="@+id/emailForgot"
         android:layout_width="345dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -95,59 +75,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <EditText
-        android:id="@+id/signInPassword"
-        android:layout_width="345dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signInEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/textResetAcc" />
 
     <TextView
-        android:id="@+id/forgotBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/forgot_password"
-        android:textColor="@color/colorPrimary"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/signInPassword"
-        app:layout_constraintTop_toBottomOf="@+id/signInPassword" />
-
-    <TextView
-        android:id="@+id/privacy_agreement"
+        android:id="@+id/textSendResetEmail"
         android:layout_width="341dp"
         android:layout_height="37dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/by_continuing_you_agree_to_our_terms_of_service_and_privacy_policy"
+        android:text="A link will be sent to the registered Email to reset your account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotBtn" />
-
-    <TextView
-        android:id="@+id/create_acc_text"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/don_t_have_an_account_sign_up"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/emailForgot" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

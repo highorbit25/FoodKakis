@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">FoodKakis</string>
-    <string name="sign_in_with_google">Sign in With Google</string>
+    <string name="sign_in_with_google">Sign In With Google</string>
     <string name="example">Example</string>
     <string name="id">ID</string>
     <string name="name">Name</string>
@@ -15,7 +15,8 @@
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="by_continuing_you_agree_to_our_terms_of_service_and_privacy_policy">By continuing, you agree to our Terms of Service and Privacy Policy.</string>
-    <string name="sign_in_with_email_wip">Sign in With Email (WIP)</string>
-    <string name="sign_in_with_google_use_this">Sign in With Google (USE THIS)</string>
-    <string name="don_t_have_an_account_sign_up_wip">Don\'t have an account? Sign Up (WIP)</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in_with_email">Sign In</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign Up</string>
+    <!--    <string name="default_web_client_id">319959386482-fn880e8p7u7hjv83hcbgen6r4hhhs0eb.apps.googleusercontent.com</string>-->
 </resources>
