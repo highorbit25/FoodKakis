@@ -12,6 +12,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivitySignInBinding
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -27,11 +28,14 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var binding: ActivitySignInBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_sign_in)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -58,8 +62,20 @@ class SignInActivity : AppCompatActivity() {
 
                 mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(this, ProfileActivity::class.java)
-                        startActivity(intent)
+                        val isNewUser: Boolean? = it.getResult().additionalUserInfo?.isNewUser
+                        if (isNewUser!!) {
+                            val intent = Intent(this, TellUsNameActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            // existing user
+                            val intent = Intent(this, ProfileActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+
+//                        val intent = Intent(this, ProfileActivity::class.java)
+//                        startActivity(intent)
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
 
@@ -110,17 +126,25 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
+        val db = Firebase.firestore
+
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("SignInActivity", "signInWithCredential:success")
-//                    val intent = Intent(this, DashboardActivity::class.java)
-                    // temporary redirect to ProfileActivity instead of Dashboard for MS1
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    val isNewUser: Boolean? = task.getResult().additionalUserInfo?.isNewUser
+                    if (isNewUser!!) {
+                        val intent = Intent(this, TellUsNameActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        // existing user
+                        val intent = Intent(this, ProfileActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.d("SignInActivity", "signInWithCredential:failure")

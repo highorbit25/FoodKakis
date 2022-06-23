@@ -24,7 +24,9 @@ class MainActivity : AppCompatActivity() {
 //                val dashboardIntent = Intent(this, DashboardActivity::class.java)
 //                startActivity(dashboardIntent)
 //                finish()
+
                 val profileIntent = Intent(this, ProfileActivity::class.java)
+//                val profileIntent = Intent(this, TellUsNameActivity::class.java)
                 startActivity(profileIntent)
                 finish()
             }else{

@@ -45,19 +45,12 @@ class SignUpActivity : AppCompatActivity() {
 
                     mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            val profileUpdates = userProfileChangeRequest {
-                                displayName = "Jane Q. User"
-//                                photoUri = Uri.parse("https://example.com/jane-q-user/profile.jpg")
+                            val isNewUser: Boolean? = it.getResult().additionalUserInfo?.isNewUser
+                            if (isNewUser!!) {
+                                val intent = Intent(this, TellUsNameActivity::class.java)
+                                startActivity(intent)
+                                finish()
                             }
-
-                            user!!.updateProfile(profileUpdates)
-                                .addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        Log.d("DefaultProfile", "User profile updated.")
-                                    }
-                                }
-                            val intent = Intent(this, ProfileActivity::class.java)
-                            startActivity(intent)
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Dashboard"
+        android:icon="@drawable/ic_baseline_dashboard_24"
+        android:id="@+id/dashboard"/>
+    <item android:title="Matches"
+        android:icon="@drawable/ic_baseline_star_24"
+        android:id="@+id/matches"/>
+    <item android:title="F&amp;B"
+        android:icon="@drawable/ic_baseline_fastfood_24"
+        android:id="@+id/fnb"/>
+    <item android:title="Me"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:id="@+id/me"/>
+</menu>

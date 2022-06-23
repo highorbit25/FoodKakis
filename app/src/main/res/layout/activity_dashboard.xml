@@ -6,82 +6,348 @@
     android:layout_height="match_parent"
     tools:context=".DashboardActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_page" />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
-
-    <TextView
-        android:id="@+id/name_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/example"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/email_address"
-        app:layout_constraintStart_toStartOf="@+id/name_txt"
-        app:layout_constraintTop_toBottomOf="@+id/name_txt" />
-
-    <TextView
-        android:id="@+id/email_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/example"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/email"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
-
-    <Button
-        android:id="@+id/sign_out_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/sign_out"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:background="@color/white"
+        android:theme="@style/BottomNavigationTheme"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_txt" />
+        app:menu="@menu/bottom_nav_menu" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="412dp"
+        android:layout_height="114dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dashboard_top_bar_foodkakis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/foodkakis"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dashboard_top_bar_connect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="@string/connect_through_food"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
 
     <TextView
-        android:id="@+id/profile_page"
+        android:id="@+id/mode_of_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="My Profile"
-        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/choose_mode_of_connection"
+        android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:layout_marginStart="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mode_of_text">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:background="@android:drawable/list_selector_background"
+                android:layout_height="match_parent"
+                android:divider="@drawable/empty_tall_divider"
+                android:orientation="horizontal"
+                android:showDividers="middle">
+
+                <LinearLayout
+                    android:id="@+id/select_foodkakis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/foodkakis_mode_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/mode_select"
+                        android:contentDescription="foodkakis_mode_image"
+                        app:srcCompat="@drawable/foodkakis_mode_image"
+                        tools:srcCompat="@drawable/foodkakis_mode_image" />
+
+                    <TextView
+                        android:id="@+id/mode_foodkakis"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/foodkakis"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mode_foodkaki_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:singleLine="false"
+                        android:text="@string/matched_according_to_availability_amp_food_preference"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/select_corpconnect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/corpconnect_mode_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="corpconnect_mode_image"
+                        app:srcCompat="@drawable/corpconnect_mode_image"
+                        tools:srcCompat="@drawable/corpconnect_mode_image" />
+
+                    <TextView
+                        android:id="@+id/mode_corpconnect"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/corporateconnect"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mode_corpconnect_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:singleLine="false"
+                        android:text="@string/seek_out_corporate_connections_amp_network_with_peers_in_your_field"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/select_surprise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/surpriseme_mode_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="surpriseme_mode_image"
+                        app:srcCompat="@drawable/surpriseme_mode_image"
+                        tools:srcCompat="@drawable/surpriseme_mode_image" />
+
+                    <TextView
+                        android:id="@+id/mode_surpriseme"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/surpriseme"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mode_surpriseme_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:singleLine="false"
+                        android:text="@string/catered_to_spontaneous_meetups"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+
+        <TextView
+            android:id="@+id/text_indicateavail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1"
+            android:text="@string/indicate_your_availability"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/availDateFill"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="16dp"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:hint="@string/date"
+            android:importantForAutofill="no"
+            android:inputType="text|date"
+            android:textColorHighlight="@color/colorPrimary"
+            android:textColorLink="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/text_timeslot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1"
+            android:text="Select Timeslot"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/time_from_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1"
+            android:autofillHints="@string/from"
+            android:dropDownWidth="wrap_content"
+            android:spinnerMode="dropdown"
+            android:visibility="visible"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <!--            <EditText-->
+<!--                android:id="@+id/availTimeFromFill"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginHorizontal="16dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:ems="10"-->
+<!--                android:focusable="false"-->
+<!--                android:hint="@string/from"-->
+<!--                android:importantForAutofill="no"-->
+<!--                android:inputType="text|time"-->
+<!--                android:textColorHighlight="@color/colorPrimary"-->
+<!--                android:textColorLink="@color/colorPrimaryDark"-->
+<!--                android:visibility="invisible"-->
+<!--                tools:visibility="invisible" />-->
+
+
+            <!--            <ImageView-->
+<!--                android:id="@+id/time_arrow"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="#2DFFFFFF"-->
+<!--                app:srcCompat="@drawable/ic_baseline_arrow_forward_24"-->
+<!--                app:tint="@color/colorPrimary"-->
+<!--                android:contentDescription="-->
+<!--" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/time_to_1hour"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="End Time"-->
+<!--                android:textAlignment="viewStart"-->
+<!--                android:textSize="28sp" />-->
+
+            <!--            <EditText-->
+<!--                android:id="@+id/availTimeToFill"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginHorizontal="16dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:ems="10"-->
+<!--                android:hint="@string/to"-->
+<!--                android:importantForAutofill="no"-->
+<!--                android:inputType="text|time"-->
+<!--                android:textColorHighlight="@color/colorPrimary"-->
+<!--                android:textColorLink="@color/colorPrimaryDark"-->
+<!--                android:visibility="invisible"-->
+<!--                tools:visibility="invisible" />-->
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_cravingFor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1"
+            android:text="@string/craving_for"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </FrameLayout>
+
+        <SearchView
+            android:background="@drawable/search_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1" >
+
+        </SearchView>
+
+        <Button
+            android:id="@+id/find_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_btn"
+            android:text="@string/find_me_a_kaki"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

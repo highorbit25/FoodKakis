@@ -1,28 +1,54 @@
 package com.orbital.foodkakis
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.orbital.foodkakis.databinding.ActivityProfileBinding
+import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityProfileBinding
     private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
+        val currentUserUid = mAuth.currentUser?.uid.toString()
+        val db = Firebase.firestore
 
-//        id_txt.text = currentUser?.uid
-        name_txt.text = currentUser?.displayName
+        val docRef = db.collection("users").document(currentUserUid)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    name_txt.text = document.get("name") as CharSequence?
+                    Log.d("GetUserData", "Retrieved user data: ${document.data}")
+                } else {
+                    Log.d("GetUserData", "Cannot retrieve user data")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("GetUserData", "get failed with ", exception)
+            }
+
+//        name_txt.text = currentUser?.displayName
         email_txt.text = currentUser?.email
 
         Glide.with(this).load(currentUser?.photoUrl).into(profile_image)
+
+        edit_profile_btn.setOnClickListener {
+            val intent = Intent(this, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
 
         sign_out_btn.setOnClickListener {
             mAuth.signOut()
@@ -30,5 +56,31 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        // Logic for Navigation Bar
+        binding.bottomNavigationView.setSelectedItemId(R.id.me)
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.dashboard-> {
+                    val dashboardIntent= Intent(this, DashboardActivity::class.java)
+                    startActivity(dashboardIntent)
+                }
+                R.id.matches -> {
+                    val matchesIntent= Intent(this, MatchesActivity::class.java)
+                    startActivity(matchesIntent)
+                }
+                R.id.fnb -> {
+                    val fnbIntent = Intent(this, FnbActivity::class.java)
+                    startActivity(fnbIntent)
+                }
+                R.id.me -> {
+                    val profileIntent = Intent(this, ProfileActivity::class.java)
+                    startActivity(profileIntent)
+                }
+            }
+            true
+        }
+
+
     }
 }

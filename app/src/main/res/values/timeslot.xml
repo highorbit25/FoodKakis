@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="thirty_min_intervals">
+        <item>06:00 - 06:30</item>
+        <item>00:30 - 01:00</item>
+        <item>01:00 - 01:30</item>
+        <item>01:30 - 02:00</item>
+    </string-array>
+    <string-array name="one_hour_intervals">
+        <item>06:00 - 07:00</item>
+        <item>06:30 - 07:30</item>
+        <item>07:00 - 08:00</item>
+        <item>07:30 - 08:30</item>
+        <item>08:00 - 09:00</item>
+        <item>08:30 - 09:30</item>
+        <item>09:00 - 10:00</item>
+        <item>09:30 - 10:30</item>
+        <item>10:00 - 11:00</item>
+        <item>10:30 - 11:30</item>
+        <item>11:00 - 12:00</item>
+        <item>11:30 - 12:30</item>
+        <item>12:00 - 13:00</item>
+        <item>12:30 - 13:30</item>
+        <item>13:00 - 14:00</item>
+        <item>13:30 - 14:30</item>
+    </string-array>
+</resources>
