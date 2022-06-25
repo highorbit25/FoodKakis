@@ -6,18 +6,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.chip.Chip
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityDashboardBinding
+import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_what_gender.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DashboardActivity : AppCompatActivity() {
@@ -28,6 +34,8 @@ class DashboardActivity : AppCompatActivity() {
     private var year = currentDate[Calendar.YEAR]
     private var month = currentDate[Calendar.MONTH]
     private var day = currentDate[Calendar.DAY_OF_MONTH]
+    private var chipsCounter = 3
+    private val cravingsArray = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +97,18 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
+        // cravings chips
+        entryChips()
+
+
+
+
         binding.findBtn.setOnClickListener {
+
+//            val cravings = binding.cravingEntries.checkedChipIds
+//            for(c in cravingEntries) {
+//                cravingsArray.add(cravingEntries.findViewById<Chip>(c).text.toString())
+//            }
             if (!emptySelection && selectedMode != "null") {
                 val date = binding.availDateFill.text.toString().replace('/','.')
                 val storeAt = db.collection(selectedMode).document(date)
@@ -97,7 +116,8 @@ class DashboardActivity : AppCompatActivity() {
                 val request = hashMapOf(
                     "swiped_right_on" to null,
                     "swiped_left_on" to null,
-                    "successful" to false
+                    "successful" to false,
+                    "cravings" to cravingsArray
                 )
                 storeAt
                     .set(request)
@@ -170,6 +190,54 @@ class DashboardActivity : AppCompatActivity() {
         mDatePicker.getButton(AlertDialog.BUTTON_NEGATIVE)
             .setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
     }
+
+    private fun creteMyChips(txt: String) {
+        val chip = Chip(this)
+        chip.apply {
+            text = txt
+            chipIcon = ContextCompat.getDrawable(
+                this@DashboardActivity,
+                R.drawable.ic_launcher_background)
+            isChipIconVisible = false
+            isCloseIconVisible = true
+            isClickable = true
+            isCheckable = false
+            binding.cravingEntries.addView(chip as View)
+            setOnCloseIconClickListener {
+                binding.cravingEntries.removeView(chip as View)
+                cravingsArray.remove(chip.text)
+                chipsCounter++
+            }
+        }
+    }
+
+    private fun entryChips() {
+//        binding.cravingSearch
+//            .setOnKeyListener { _, keyCode, event ->
+//                if (keyCode == KeyEvent.KEYCODE_ENTER
+//                    && event.action == KeyEvent.ACTION_UP
+//                ) {
+//
+//                    val name = binding.cravingSearch.text.toString()
+//                    creteMyChips(name)
+//                    binding.cravingSearch.text.clear()
+//                    return@setOnKeyListener true
+//                }
+//                false
+//            }
+        binding.addButton.setOnClickListener {
+            if (chipsCounter > 0) {
+                val cravings = binding.cravingSearch.text.toString()
+                creteMyChips(cravings)
+                cravingsArray.add(cravings)
+                binding.cravingSearch.text.clear()
+                chipsCounter--
+            } else {
+                Toast.makeText(this, "Max of 3 cravings", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
 
 }
