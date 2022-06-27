@@ -2,13 +2,12 @@ package com.orbital.foodkakis
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
-import com.orbital.foodkakis.databinding.ActivitySignUpBinding
 import android.widget.Toast
-import com.google.firebase.auth.ktx.userProfileChangeRequest
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.orbital.foodkakis.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -47,6 +46,8 @@ class SignUpActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             val isNewUser: Boolean? = it.getResult().additionalUserInfo?.isNewUser
                             if (isNewUser!!) {
+                                val updateInfo = UserProfileChangeRequest.Builder().setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg")).build()
+                                mAuth.currentUser?.updateProfile(updateInfo)
                                 val intent = Intent(this, TellUsNameActivity::class.java)
                                 startActivity(intent)
                                 finish()

@@ -15,7 +15,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/blue_btn"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="Reset my account"
@@ -47,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/login_bg"
-        app:srcCompat="@drawable/text_logo" />
+        app:srcCompat="@drawable/foodkakis_logo_red" />
 
     <TextView
         android:id="@+id/textResetAcc"

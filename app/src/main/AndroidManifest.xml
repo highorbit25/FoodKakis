@@ -14,8 +14,44 @@
         android:theme="@style/Theme.FoodKakis"
         tools:targetApi="31">
         <activity
+            android:name=".DashboardSwipeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
             android:name=".FnbActivity"
             android:exported="false" />
+        <activity
+            android:name=".TinderScene1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene4Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene5Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene6Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene7Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene8Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene9Activity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity
+            android:name=".TinderScene10Activity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".MatchesActivity"
             android:exported="false" />

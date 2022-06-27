@@ -3,10 +3,11 @@ package com.orbital.foodkakis
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
-import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -16,14 +17,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.chip.Chip
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityDashboardBinding
 import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.activity_what_gender.*
+import kotlinx.android.synthetic.main.activity_edit_profile.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class DashboardActivity : AppCompatActivity() {
@@ -48,21 +49,50 @@ class DashboardActivity : AppCompatActivity() {
 
         val currentUserUid = mAuth.currentUser?.uid.toString()
         val db = Firebase.firestore
+        val activeReq = db.collection("users").document(currentUserUid)
 
-
+//         check if there is existing request, if there is redirect to DashboardSwipeActivity
+        activeReq.get()
+            .addOnSuccessListener { document ->
+                if (document.get("active_request") == true) {
+                    val swipeIntent = Intent(this, DashboardSwipeActivity::class.java)
+                    startActivity(swipeIntent)
+                    Log.d("DashboardActivity", "Active Request detected, goto DashboardSwipeActivity")
+                } else {
+                    Log.d("DashboardActivity", "No Active Request detected, allow user to create new request")
+                }
+        }
 
         binding.selectFoodkakis.setOnClickListener {
             selectedMode = "FoodKaki"
+            binding.selectFoodkakis.setBackgroundColor(resources.getColor(R.color.blue_50))
+            binding.modeFoodkakis.setTextColor(resources.getColor(R.color.colorPrimary))
+            binding.selectCorpconnect.setBackgroundColor(resources.getColor(R.color.white))
+            binding.modeCorpconnect.setTextColor(resources.getColor(R.color.black))
+            binding.selectSurprise.setBackgroundColor(resources.getColor(R.color.white))
+            binding.modeSurpriseme.setTextColor(resources.getColor(R.color.black))
             Log.d("DashboardActivity", "FoodKaki mode selected")
         }
 
         binding.selectCorpconnect.setOnClickListener {
             selectedMode = "CorpConnect"
+            binding.selectCorpconnect.setBackgroundColor(resources.getColor(R.color.blue_50))
+            binding.modeCorpconnect.setTextColor(resources.getColor(R.color.colorPrimary))
+            binding.selectSurprise.setBackgroundColor(resources.getColor(R.color.white))
+            binding.modeSurpriseme.setTextColor(resources.getColor(R.color.black))
+            binding.selectFoodkakis.setBackgroundColor(resources.getColor(R.color.white))
+            binding.modeFoodkakis.setTextColor(resources.getColor(R.color.black))
             Log.d("DashboardActivity", "CorpConnect mode selected")
         }
 
         binding.selectSurprise.setOnClickListener {
             selectedMode = "Surprise"
+            binding.selectSurprise.setBackgroundColor(resources.getColor(R.color.blue_50))
+            binding.modeSurpriseme.setTextColor(resources.getColor(R.color.colorPrimary))
+            binding.selectCorpconnect.setBackgroundColor(resources.getColor(R.color.white))
+            binding.modeCorpconnect.setTextColor(resources.getColor(R.color.black))
+            binding.selectFoodkakis.setBackgroundColor(resources.getColor(R.color.white))
+            binding.modeFoodkakis.setTextColor(resources.getColor(R.color.black))
             Log.d("DashboardActivity", "SurpriseMe mode selected")
         }
 
@@ -70,6 +100,8 @@ class DashboardActivity : AppCompatActivity() {
         binding.availDateFill.setOnClickListener {
             selectDate()
         }
+
+
 
         val spinnerTimeFrom: Spinner = binding.timeFromSpinner
         var emptySelection = true
@@ -104,11 +136,6 @@ class DashboardActivity : AppCompatActivity() {
 
 
         binding.findBtn.setOnClickListener {
-
-//            val cravings = binding.cravingEntries.checkedChipIds
-//            for(c in cravingEntries) {
-//                cravingsArray.add(cravingEntries.findViewById<Chip>(c).text.toString())
-//            }
             if (!emptySelection && selectedMode != "null") {
                 val date = binding.availDateFill.text.toString().replace('/','.')
                 val storeAt = db.collection(selectedMode).document(date)
@@ -135,10 +162,35 @@ class DashboardActivity : AppCompatActivity() {
                         )
                     }
 
-                // move to MatchesActivity
-                val intent = Intent(this, MatchesActivity::class.java)
-                startActivity(intent)
-                finish()
+                // save current active request
+                val userRequest = hashMapOf(
+                    "selected_mode" to selectedMode,
+                    "date" to date,
+                    "timeslot" to timeSlot,
+                    "cravings" to cravingsArray,
+                    "active_request" to true
+                )
+                db.collection("users").document(currentUserUid)
+//                activeReq
+                    .set(userRequest, SetOptions.merge())
+                    .addOnSuccessListener {
+                        Log.d(
+                            "DashboardActivity",
+                            "Active request stored for: $currentUserUid\" "
+                        )
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(
+                            "DashboardActivity",
+                            "Error writing active request",
+                            e
+                        )
+                    }
+
+
+                // move to DashboardSwipeActivity
+                val swipeIntent= Intent(this, DashboardSwipeActivity::class.java)
+                startActivity(swipeIntent)
             }
         }
 
@@ -212,19 +264,6 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun entryChips() {
-//        binding.cravingSearch
-//            .setOnKeyListener { _, keyCode, event ->
-//                if (keyCode == KeyEvent.KEYCODE_ENTER
-//                    && event.action == KeyEvent.ACTION_UP
-//                ) {
-//
-//                    val name = binding.cravingSearch.text.toString()
-//                    creteMyChips(name)
-//                    binding.cravingSearch.text.clear()
-//                    return@setOnKeyListener true
-//                }
-//                false
-//            }
         binding.addButton.setOnClickListener {
             if (chipsCounter > 0) {
                 val cravings = binding.cravingSearch.text.toString()

@@ -46,5 +46,14 @@
     <string name="craving_for">Craving For</string>
     <string name="find_me_a_kaki">Find me a kaki!</string>
     <string name="seek_out_corporate_connections_amp_network_with_peers_in_your_field"><![CDATA[Seek out corporate connections & network with peers in your field]]></string>
+    <string name="work_in_progress_check_back_again">Work In Progress, Check back again!</string>
+    <string name="work_in_progress_stay_tuned_for_our_next_update">Work in progress, stay tuned for our next update!</string>
+    <string name="logo">logo</string>
+    <string name="foodkakis_mode_image">foodkakis_mode_image</string>
+    <string name="corpconnect_mode_image">corpconnect_mode_image</string>
+    <string name="surpriseme_mode_image">surpriseme_mode_image</string>
+    <string name="select_timeslot">Select Timeslot</string>
+    <string name="add_up_to_3_cravings">Add up to 3 cravings!</string>
+    <string name="add_cravings_button">add cravings button</string>
     <!--    <string name="default_web_client_id">319959386482-fn880e8p7u7hjv83hcbgen6r4hhhs0eb.apps.googleusercontent.com</string>-->
 </resources>

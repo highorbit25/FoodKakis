@@ -16,26 +16,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/dashboard_top_bar_foodkakis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:text="@string/foodkakis"
-            android:textColor="#FFFFFF"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:cropToPadding="false"
+            android:scaleX="2"
+            android:scaleY="2"
+            app:srcCompat="@drawable/foodkakis_logo_red"
+            android:contentDescription="@string/logo" />
 
-        <TextView
-            android:id="@+id/dashboard_top_bar_connect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:gravity="center"
-            android:text="@string/connect_through_food"
-            android:textColor="#FFFFFF"
-            android:textStyle="italic" />
+<!--        <TextView-->
+<!--            android:id="@+id/dashboard_top_bar_foodkakis"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/foodkakis"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="34sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/dashboard_top_bar_connect"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="2dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/connect_through_food"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textStyle="italic" />-->
 
     </LinearLayout>
 
@@ -87,7 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/mode_select"
-                        android:contentDescription="foodkakis_mode_image"
+                        android:contentDescription="@string/foodkakis_mode_image"
                         app:srcCompat="@drawable/foodkakis_mode_image"
                         tools:srcCompat="@drawable/foodkakis_mode_image" />
 
@@ -119,7 +129,7 @@
                         android:id="@+id/corpconnect_mode_image"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:contentDescription="corpconnect_mode_image"
+                        android:contentDescription="@string/corpconnect_mode_image"
                         app:srcCompat="@drawable/corpconnect_mode_image"
                         tools:srcCompat="@drawable/corpconnect_mode_image" />
 
@@ -151,7 +161,7 @@
                         android:id="@+id/surpriseme_mode_image"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:contentDescription="surpriseme_mode_image"
+                        android:contentDescription="@string/surpriseme_mode_image"
                         app:srcCompat="@drawable/surpriseme_mode_image"
                         tools:srcCompat="@drawable/surpriseme_mode_image" />
 
@@ -216,7 +226,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_weight="1"
-            android:text="Select Timeslot"
+            android:text="@string/select_timeslot"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -232,66 +242,6 @@
             android:spinnerMode="dropdown"
             android:visibility="visible"
             tools:ignore="SpeakableTextPresentCheck" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-
-            <!--            <EditText-->
-            <!--                android:id="@+id/availTimeFromFill"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="48dp"-->
-            <!--                android:layout_marginHorizontal="16dp"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:ems="10"-->
-            <!--                android:focusable="false"-->
-            <!--                android:hint="@string/from"-->
-            <!--                android:importantForAutofill="no"-->
-            <!--                android:inputType="text|time"-->
-            <!--                android:textColorHighlight="@color/colorPrimary"-->
-            <!--                android:textColorLink="@color/colorPrimaryDark"-->
-            <!--                android:visibility="invisible"-->
-            <!--                tools:visibility="invisible" />-->
-
-
-            <!--            <ImageView-->
-            <!--                android:id="@+id/time_arrow"-->
-            <!--                android:layout_width="100dp"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:background="#2DFFFFFF"-->
-            <!--                app:srcCompat="@drawable/ic_baseline_arrow_forward_24"-->
-            <!--                app:tint="@color/colorPrimary"-->
-            <!--                android:contentDescription="-->
-            <!--" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/time_to_1hour"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:text="End Time"-->
-            <!--                android:textAlignment="viewStart"-->
-            <!--                android:textSize="28sp" />-->
-
-            <!--            <EditText-->
-            <!--                android:id="@+id/availTimeToFill"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="48dp"-->
-            <!--                android:layout_marginHorizontal="16dp"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:ems="10"-->
-            <!--                android:hint="@string/to"-->
-            <!--                android:importantForAutofill="no"-->
-            <!--                android:inputType="text|time"-->
-            <!--                android:textColorHighlight="@color/colorPrimary"-->
-            <!--                android:textColorLink="@color/colorPrimaryDark"-->
-            <!--                android:visibility="invisible"-->
-            <!--                tools:visibility="invisible" />-->
-        </LinearLayout>
 
         <TextView
             android:id="@+id/text_cravingFor"
@@ -315,23 +265,27 @@
                 android:id="@+id/cravingSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:hint="Add up to 3 cravings!"
+                android:hint="@string/add_up_to_3_cravings"
                 android:singleLine="true"
-                android:text="" />
+                android:text=""
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
+                tools:ignore="NestedWeights" />
 
             <ImageButton
                 android:id="@+id/addButton"
                 style="@style/Widget.AppCompat.ImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="3"
                 android:background="@drawable/round_add"
                 app:srcCompat="@drawable/ic_baseline_add_24"
-                app:tint="#FFFFFF" />
+                app:tint="#FFFFFF"
+                android:contentDescription="@string/add_cravings_button" />
         </LinearLayout>
 
         <LinearLayout
@@ -353,13 +307,14 @@
             <Button
                 android:id="@+id/find_btn"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="3dp"
                 android:layout_weight="1"
                 android:background="@drawable/blue_btn"
                 android:text="@string/find_me_a_kaki"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                tools:ignore="NestedWeights" />
         </LinearLayout>
 
     </LinearLayout>
