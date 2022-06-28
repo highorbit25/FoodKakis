@@ -14,13 +14,78 @@
         android:theme="@style/Theme.FoodKakis"
         tools:targetApi="31">
         <activity
-            android:name=".ProfileActivity"
+            android:name=".DashboardSwipeActivity"
             android:exported="false"
-            android:theme="@style/Theme.Design.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".FnbActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene4Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene5Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene6Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene7Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene8Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TinderScene9Activity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity
+            android:name=".TinderScene10Activity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".MatchesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DescribeYourselfActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TellUsBdayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WhatGenderActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".TellUsNameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgetActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".DashboardActivity"
             android:exported="false"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".SignInActivity"
             android:exported="false"

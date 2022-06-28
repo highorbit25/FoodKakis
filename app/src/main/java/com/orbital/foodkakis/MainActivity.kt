@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.google.firebase.auth.FirebaseAuth
+import com.orbital.foodkakis.TinderScene10Activity
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +18,11 @@ class MainActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
 
+        // Test swipe cards
+//        val signInIntent = Intent(this, TinderScene10Activity::class.java)
+//                startActivity(signInIntent)
+
+
         /**If user is not authenticated, send him to SignInActivity to authenticate first.
          * Else send him to DashboardActivity*/
         Handler().postDelayed({
@@ -24,7 +30,9 @@ class MainActivity : AppCompatActivity() {
 //                val dashboardIntent = Intent(this, DashboardActivity::class.java)
 //                startActivity(dashboardIntent)
 //                finish()
+
                 val profileIntent = Intent(this, ProfileActivity::class.java)
+//                val profileIntent = Intent(this, TellUsNameActivity::class.java)
                 startActivity(profileIntent)
                 finish()
             }else{

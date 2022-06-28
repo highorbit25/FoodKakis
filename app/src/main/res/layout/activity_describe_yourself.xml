@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DescribeYourselfActivity">
+
+    <TextView
+        android:id="@+id/describeYourselfText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/describe_yourself"
+        android:textColor="@color/black"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/descriptionFill"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/describeYourselfText2"
+        android:layout_width="343dp"
+        android:layout_height="39dp"
+        android:text="@string/share_interesting_facts_hobbies_favourite_food_to_stand_out_from_the_rest"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/describeYourselfText"
+        app:layout_constraintTop_toBottomOf="@+id/describeYourselfText" />
+
+    <EditText
+        android:id="@+id/descriptionFill"
+        android:layout_width="345dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="50sp"
+        android:autoSizeMaxTextSize="100sp"
+        android:ems="10"
+        android:hint="@string/quality_over_quantity"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/describeYourselfText2" />
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        app:layout_constraintStart_toStartOf="@+id/descriptionFill"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionFill" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
