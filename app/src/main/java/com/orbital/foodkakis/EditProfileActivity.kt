@@ -1,18 +1,23 @@
 package com.orbital.foodkakis
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.orbital.foodkakis.databinding.ActivityEditProfileBinding
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import java.text.SimpleDateFormat
@@ -22,6 +27,8 @@ class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var binding: ActivityEditProfileBinding
+    private lateinit var currentUserUid: String
+    private var mSelectedImageFileUri: Uri? = null
     private val currentDate: Calendar = Calendar.getInstance()
     private var year = currentDate[Calendar.YEAR]
     private var month = currentDate[Calendar.MONTH]
@@ -33,12 +40,13 @@ class EditProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mAuth = FirebaseAuth.getInstance()
-        val currentUser = mAuth.currentUser
-        val currentUserUid = mAuth.currentUser?.uid.toString()
+        mAuth.currentUser
+        currentUserUid = mAuth.currentUser?.uid.toString()
         val db = Firebase.firestore
         val docRef = db.collection("users").document(currentUserUid)
 
-        Glide.with(this).load(currentUser?.photoUrl).into(profile_image)
+        getImage()
+
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
@@ -55,11 +63,17 @@ class EditProfileActivity : AppCompatActivity() {
                 Log.d("GetUserData", "get failed with ", exception)
             }
 
+        binding.updatePhotoBtn.setOnClickListener {
+            val openGalleryIntent = Intent(Intent.ACTION_PICK)
+            openGalleryIntent.type = "image/*"
+            startActivityForResult(openGalleryIntent, 1000)
+        }
+
         binding.updateProfileBtn.setOnClickListener {
             val birthday = binding.editProfileBdayFill.text.toString()
             val desc = binding.editProfileDescFill.text.toString()
 
-            if (birthday != null && desc != null) {
+            if (birthday != "" && desc != "") {
                 // Set the "birthday" & 'description" field of the user
                 docRef
                     .update("birthday", birthday)
@@ -106,6 +120,54 @@ class EditProfileActivity : AppCompatActivity() {
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1000) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    mSelectedImageFileUri = data.data!!
+                    uploadImage()
+                }
+            }
+        }
+    }
+
+    private fun uploadImage() {
+        if (mSelectedImageFileUri != null) {
+            binding.progressBar2.visibility = View.VISIBLE
+            binding.profileImage.visibility = View.INVISIBLE
+            val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
+                "users/ $currentUserUid/profile.jpg"
+            )
+            sRef.putFile(mSelectedImageFileUri!!)
+                .addOnSuccessListener { taskSnapshot ->
+                    taskSnapshot.metadata!!.reference!!.downloadUrl
+                        .addOnSuccessListener { url ->
+                            Glide.with(this).load(url).into(profile_image)
+                            binding.progressBar2.visibility = View.INVISIBLE
+                            binding.profileImage.visibility = View.VISIBLE
+                            Toast.makeText(this, "Photo updated", Toast.LENGTH_SHORT).show()
+                        }
+                }.addOnFailureListener {
+                    binding.progressBar2.visibility = View.INVISIBLE
+                    binding.profileImage.visibility = View.VISIBLE
+                    Toast.makeText(this, "Photo upload failed", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    private fun getImage() {
+        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
+            "users/ $currentUserUid/profile.jpg"
+        )
+        sRef.downloadUrl.addOnSuccessListener {
+            Glide.with(this).load(it).into(profile_image)
+        }
+    }
+
     private fun selectDate() {
         val mDatePicker = DatePickerDialog(
             this, R.style.DialogTheme,
@@ -120,6 +182,7 @@ class EditProfileActivity : AppCompatActivity() {
             }, year, month, day
         )
 
+        mDatePicker.datePicker.maxDate = currentDate.timeInMillis
         mDatePicker.show()
         mDatePicker.getButton(AlertDialog.BUTTON_POSITIVE)
             .setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))

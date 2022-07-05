@@ -303,7 +303,15 @@
                 app:layout_constraintStart_toStartOf="@id/cardOne" />
         </Constraint>
 
-        <Constraint android:id="@id/description">
+        <Constraint android:id="@id/description"
+            android:layout_marginEnd="16dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/cardOne"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/cardOne"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="@id/cardOne"
+            android:layout_marginStart="16dp">
             <Layout
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

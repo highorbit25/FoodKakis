@@ -3,11 +3,9 @@ package com.orbital.foodkakis
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -21,8 +19,6 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityDashboardBinding
-import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.activity_edit_profile.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,6 +31,7 @@ class DashboardActivity : AppCompatActivity() {
     private var year = currentDate[Calendar.YEAR]
     private var month = currentDate[Calendar.MONTH]
     private var day = currentDate[Calendar.DAY_OF_MONTH]
+    private var oneMonth = currentDate[Calendar.MONTH] + 1
     private var chipsCounter = 3
     private val cravingsArray = ArrayList<String>()
 
@@ -235,6 +232,8 @@ class DashboardActivity : AppCompatActivity() {
             }, year, month, day
         )
 
+        mDatePicker.datePicker.minDate = currentDate.timeInMillis
+
         mDatePicker.show()
         mDatePicker.getButton(AlertDialog.BUTTON_POSITIVE)
             .setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
@@ -243,8 +242,9 @@ class DashboardActivity : AppCompatActivity() {
             .setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
     }
 
-    private fun creteMyChips(txt: String) {
+    private fun createMyChips(txt: String) {
         val chip = Chip(this)
+        chip.setEnsureMinTouchTargetSize(true)
         chip.apply {
             text = txt
             chipIcon = ContextCompat.getDrawable(
@@ -267,7 +267,7 @@ class DashboardActivity : AppCompatActivity() {
         binding.addButton.setOnClickListener {
             if (chipsCounter > 0) {
                 val cravings = binding.cravingSearch.text.toString()
-                creteMyChips(cravings)
+                createMyChips(cravings)
                 cravingsArray.add(cravings)
                 binding.cravingSearch.text.clear()
                 chipsCounter--

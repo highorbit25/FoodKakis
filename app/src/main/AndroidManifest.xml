@@ -11,12 +11,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FoodKakis"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".UploadPhotoActivity"
+            android:exported="false"/>
+        <activity
             android:name=".DashboardSwipeActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".FnbActivity"
             android:exported="false" />
@@ -46,12 +48,10 @@
             android:exported="false" />
         <activity
             android:name=".TinderScene9Activity"
-            android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:exported="false"/>
         <activity
             android:name=".TinderScene10Activity"
-            android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="false"/>
         <activity
             android:name=".MatchesActivity"
             android:exported="false" />
@@ -63,37 +63,32 @@
             android:exported="false" />
         <activity
             android:name=".TellUsBdayActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".WhatGenderActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"/>
         <activity
             android:name=".TellUsNameActivity"
             android:exported="false" />
         <activity
             android:name=".ForgetActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".SignUpActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".DashboardActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="false"/>
         <activity
             android:name=".SignInActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

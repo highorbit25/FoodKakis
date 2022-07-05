@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.orbital.foodkakis.databinding.ActivityProfileBinding
 import kotlinx.android.synthetic.main.activity_profile.*
 
@@ -15,6 +17,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var currentUserUid: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +26,7 @@ class ProfileActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
-        val currentUserUid = mAuth.currentUser?.uid.toString()
+        currentUserUid = mAuth.currentUser?.uid.toString()
         val db = Firebase.firestore
 
         val docRef = db.collection("users").document(currentUserUid)
@@ -43,7 +46,10 @@ class ProfileActivity : AppCompatActivity() {
 //        name_txt.text = currentUser?.displayName
         email_txt.text = currentUser?.email
 
-        Glide.with(this).load(currentUser?.photoUrl).into(profile_image)
+        getImage()
+//        Glide.with(this).load(currentUser?.photoUrl).into(profile_image)
+
+
 
         edit_profile_btn.setOnClickListener {
             val intent = Intent(this, EditProfileActivity::class.java)
@@ -56,6 +62,8 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+
 
         // Logic for Navigation Bar
         binding.bottomNavigationView.setSelectedItemId(R.id.me)
@@ -82,5 +90,18 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
+
+
     }
+
+    private fun getImage() {
+        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
+            "users/ $currentUserUid/profile.jpg"
+        )
+        sRef.downloadUrl.addOnSuccessListener {
+            Glide.with(this).load(it).into(profile_image)
+        }
+    }
+
+
 }

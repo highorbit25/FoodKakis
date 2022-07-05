@@ -55,5 +55,18 @@
     <string name="select_timeslot">Select Timeslot</string>
     <string name="add_up_to_3_cravings">Add up to 3 cravings!</string>
     <string name="add_cravings_button">add cravings button</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="update_photo">Update Photo</string>
+    <string name="sign_up_lower">Sign Up</string>
+    <string name="already_registered_sign_in">Already Registered , Sign In !</string>
+    <string name="re_enter_your_password">Re-enter your Password</string>
+    <string name="reset_my_account">Reset my account</string>
+    <string name="reset_account">Reset Account</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="prefer_not_to_say">Prefer not to say</string>
     <!--    <string name="default_web_client_id">319959386482-fn880e8p7u7hjv83hcbgen6r4hhhs0eb.apps.googleusercontent.com</string>-->
 </resources>

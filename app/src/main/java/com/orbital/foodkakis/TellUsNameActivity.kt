@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityTellUsNameBinding
-import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_tell_us_name.*
 
 class TellUsNameActivity : AppCompatActivity() {
@@ -40,8 +39,8 @@ class TellUsNameActivity : AppCompatActivity() {
                         Log.w("TellUsName", "Error updating name", e)
                     }
 
-                // move to UploadPhotoActivity / WhatGenderActivity for now
-                val intent = Intent(this, WhatGenderActivity::class.java)
+                // move to UploadPhotoActivity
+                val intent = Intent(this, UploadPhotoActivity::class.java)
                 startActivity(intent)
                 finish()
             }

@@ -2,11 +2,12 @@
 
     <!-- Base application theme. -->
 <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/blue_50</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/material_dynamic_secondary20</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
@@ -26,5 +27,38 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/cardview_dark_background</item>
     </style>
+
+    <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Entry">
+        <item name="chipIconTint">@color/blue_50</item>
+        <item name="chipBackgroundColor">@color/white</item>
+        <item name="chipStrokeWidth">2dp</item>
+        <item name="chipStrokeColor">@color/colorPrimary</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <style name="Widget.Gender.Chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipIconTint">@color/blue_50</item>
+        <item name="chipBackgroundColor">@color/bg_chip_state_list</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="rippleColor">@color/blue_50</item>
+
+    </style>
+
+    <style name="ThinnerChip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipCornerRadius">12dp</item>
+        <item name="chipMinHeight">24dp</item>
+        <item name="android:textAppearance">@style/SmallerText</item>
+    </style>
+
+    <style name="SmallerText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="CustomButton" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">50dp</item>
+        <item name="backgroundTint">#F0F8FF</item>
+    </style>
+
 
 </resources>

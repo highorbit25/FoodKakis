@@ -15,6 +15,8 @@ class MatchesActivity : AppCompatActivity() {
         binding = ActivityMatchesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         // Logic for Navigation Bar
         binding.bottomNavigationView.selectedItemId = R.id.matches
         binding.bottomNavigationView.setOnItemSelectedListener { item ->

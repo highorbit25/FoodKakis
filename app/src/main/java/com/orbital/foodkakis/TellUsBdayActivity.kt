@@ -71,6 +71,7 @@ class TellUsBdayActivity : AppCompatActivity() {
             }, year, month, day
         )
 
+        mDatePicker.datePicker.maxDate = currentDate.timeInMillis
         mDatePicker.show()
         mDatePicker.getButton(AlertDialog.BUTTON_POSITIVE)
             .setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
