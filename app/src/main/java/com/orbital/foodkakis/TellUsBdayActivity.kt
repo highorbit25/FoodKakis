@@ -13,6 +13,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityTellUsBdayBinding
 import java.text.SimpleDateFormat
+import java.time.Period
+import java.time.ZonedDateTime
 import java.util.*
 
 class TellUsBdayActivity : AppCompatActivity() {
@@ -21,8 +23,10 @@ class TellUsBdayActivity : AppCompatActivity() {
 
     private val currentDate: Calendar = Calendar.getInstance()
     private var year = currentDate[Calendar.YEAR]
+    private var curYear = currentDate[Calendar.YEAR]
     private var month = currentDate[Calendar.MONTH]
     private var day = currentDate[Calendar.DAY_OF_MONTH]
+    private var age = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +52,12 @@ class TellUsBdayActivity : AppCompatActivity() {
                     .addOnSuccessListener { Log.d("TellUsBday", "Birthday updated for: $currentUserUid") }
                     .addOnFailureListener { e -> Log.w("TellUsBday", "Error updating birthday", e) }
 
+                // Set the "age" field of the user
+                userRef
+                    .update("age", age)
+                    .addOnSuccessListener { Log.d("TellUsBday", "Age updated for: $currentUserUid") }
+                    .addOnFailureListener { e -> Log.w("TellUsBday", "Error updating age", e) }
+
                 // move to DescribeYourselfActivity
                 val intent = Intent(this, DescribeYourselfActivity::class.java)
                 startActivity(intent)
@@ -66,12 +76,14 @@ class TellUsBdayActivity : AppCompatActivity() {
                 day = selectedDay
                 month = selectedMonth
                 year = selectedYear
+                age = curYear - year
                 currentDate.set(year, month, day)
                 binding.tellUsBdayFill.text = Editable.Factory.getInstance().newEditable(sdf.format(currentDate.time))
             }, year, month, day
         )
 
-        mDatePicker.datePicker.maxDate = currentDate.timeInMillis
+        // Restrict at least 18 YO
+        mDatePicker.datePicker.maxDate = (ZonedDateTime.now() - Period.ofYears(18)).toInstant().toEpochMilli()
         mDatePicker.show()
         mDatePicker.getButton(AlertDialog.BUTTON_POSITIVE)
             .setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))

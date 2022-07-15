@@ -31,9 +31,11 @@ class DashboardActivity : AppCompatActivity() {
     private var year = currentDate[Calendar.YEAR]
     private var month = currentDate[Calendar.MONTH]
     private var day = currentDate[Calendar.DAY_OF_MONTH]
-    private var oneMonth = currentDate[Calendar.MONTH] + 1
     private var chipsCounter = 3
     private val cravingsArray = ArrayList<String>()
+    private val swipedRightOnArray = ArrayList<String>()
+    private val swipedLeftOnArray = ArrayList<String>()
+    private val interestedArray = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,8 +140,9 @@ class DashboardActivity : AppCompatActivity() {
                 val storeAt = db.collection(selectedMode).document(date)
                     .collection(timeSlot.toString()).document(currentUserUid)
                 val request = hashMapOf(
-                    "swiped_right_on" to null,
-                    "swiped_left_on" to null,
+                    "swiped_right_on" to swipedRightOnArray,
+                    "swiped_left_on" to swipedLeftOnArray,
+                    "interested_list" to interestedArray,
                     "successful" to false,
                     "cravings" to cravingsArray
                 )
@@ -159,7 +162,7 @@ class DashboardActivity : AppCompatActivity() {
                         )
                     }
 
-                // save current active request
+                // save current active request within 'user'
                 val userRequest = hashMapOf(
                     "selected_mode" to selectedMode,
                     "date" to date,
@@ -168,7 +171,7 @@ class DashboardActivity : AppCompatActivity() {
                     "active_request" to true
                 )
                 db.collection("users").document(currentUserUid)
-//                activeReq
+                        // merge to existing data
                     .set(userRequest, SetOptions.merge())
                     .addOnSuccessListener {
                         Log.d(
@@ -183,7 +186,6 @@ class DashboardActivity : AppCompatActivity() {
                             e
                         )
                     }
-
 
                 // move to DashboardSwipeActivity
                 val swipeIntent= Intent(this, DashboardSwipeActivity::class.java)
