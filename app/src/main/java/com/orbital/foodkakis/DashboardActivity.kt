@@ -54,6 +54,7 @@ class DashboardActivity : AppCompatActivity() {
         activeReq.get()
             .addOnSuccessListener { document ->
                 if (document.get("active_request") == true) {
+                    Toast.makeText(this, "Active Request detected, Swipe Away!", Toast.LENGTH_SHORT).show()
                     val swipeIntent = Intent(this, DashboardSwipeActivity::class.java)
                     startActivity(swipeIntent)
                     Log.d("DashboardActivity", "Active Request detected, goto DashboardSwipeActivity")

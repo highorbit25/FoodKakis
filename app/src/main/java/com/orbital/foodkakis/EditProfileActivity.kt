@@ -145,6 +145,7 @@ class EditProfileActivity : AppCompatActivity() {
         if (mSelectedImageFileUri != null) {
             binding.progressBar2.visibility = View.VISIBLE
             binding.profileImage.visibility = View.INVISIBLE
+            val db = Firebase.firestore
             val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
                 "users/ $currentUserUid/profile.jpg"
             )
@@ -156,6 +157,13 @@ class EditProfileActivity : AppCompatActivity() {
                             binding.progressBar2.visibility = View.INVISIBLE
                             binding.profileImage.visibility = View.VISIBLE
                             Toast.makeText(this, "Photo updated", Toast.LENGTH_SHORT).show()
+
+                            // Set the "profile_image" field of the user
+                            val userRef = db.collection("users").document(currentUserUid)
+                            userRef
+                                .update("profile_image", url)
+                                .addOnSuccessListener { Log.d("UploadPhoto", "Photo uri updated for: $currentUserUid") }
+                                .addOnFailureListener { e -> Log.w("UploadPhoto", "Error updating photo uri", e) }
                         }
                 }.addOnFailureListener {
                     binding.progressBar2.visibility = View.INVISIBLE

@@ -46,97 +46,97 @@ class TinderContactRepository {
         }
     }
 
-    fun getMatches(){
-        mAuth = FirebaseAuth.getInstance()
-        val currentUserUid = mAuth.currentUser?.uid.toString()
-        val db = Firebase.firestore
-        // retrieve details of the request
-        val docRef = db.collection("users").document(currentUserUid)
-        var selectedMode: String?
-        var date: String?
-        var timeSlot: String?
-        val matchesArray = ArrayList<QueryDocumentSnapshot>()
-
-
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document.get("active_request") == true) {
-                    selectedMode = document.get("selected_mode") as String?
-                    date = document.get("date") as String?
-                    timeSlot = document.get("timeslot") as String?
-                    Log.d("GetActiveReq", "Retrieved active request: ${document.data}")
-
-                    val matchesRef = db.collection(selectedMode.toString())
-                        .document(date.toString())
-                        .collection(timeSlot.toString())
-                    matchesRef
-                        .whereEqualTo("successful", false)
-                        .get()
-                        .addOnSuccessListener { documents ->
-                            for (doc in documents) {
-                                if (doc.id == currentUserUid.toString()) {
-                                    // skip ownself
-                                    continue
-                                }
-                                matchesArray.add(doc)
-                                Log.d(
-                                    "DashboardSwipeActivity Match found",
-                                    "${doc.id} => ${doc.data}"
-                                )
-                            }
-                            for (doc in matchesArray) {
-                                // get matched profile using doc.id
-                                val profileRef = db.collection("users").document(doc.id)
-                                var name: String
-                                var desc: String
-                                profileRef.get()
-                                    .addOnSuccessListener { document ->
-                                        if (document != null) {
-                                            name = document.get("name").toString()
-                                            desc = document.get("description").toString()
-                                            Log.d("CardCreation", "Retrieved matching user data: ${document.data}")
-                                            // add the card to data
-                                            dataArray.add(
-                                                TinderContactCardModel(
-                                                    name = name, age = 27, description = desc, backgroundColor = Color.parseColor("#c50e29")
-                                                )
-                                            )
-                                            Log.d("Add to data", "Card added for: ${name}")
-                                            // check if arrayList is properly updated
-                                            println("......print dataArray2......")
-                                            println(dataArray.size.toString())
-                                            for (card in dataArray) {
-                                                println(card.name)
-                                                println(card.age)
-                                                println(card.description)
-                                            }
-
-
-                                        } else {
-                                            Log.w("CardCreation", "Cannot retrieve matching user data")
-                                        }
-                                    }
-                            }
-
-
-
-                        }
-                        .addOnFailureListener { exception ->
-                            Log.w("DashboardSwipeActivity", "Error getting documents: ", exception)
-                        }
-
-                } else {
-                    Log.w("GetActiveReq", "Cannot retrieve active request")
-                }
-
-            }
-            .addOnFailureListener { exception ->
-                Log.w("GetActiveReq", "getting active request failed with ", exception)
-            }
-
-
-
-    }
+//    fun getMatches(){
+//        mAuth = FirebaseAuth.getInstance()
+//        val currentUserUid = mAuth.currentUser?.uid.toString()
+//        val db = Firebase.firestore
+//        // retrieve details of the request
+//        val docRef = db.collection("users").document(currentUserUid)
+//        var selectedMode: String?
+//        var date: String?
+//        var timeSlot: String?
+//        val matchesArray = ArrayList<QueryDocumentSnapshot>()
+//
+//
+//        docRef.get()
+//            .addOnSuccessListener { document ->
+//                if (document.get("active_request") == true) {
+//                    selectedMode = document.get("selected_mode") as String?
+//                    date = document.get("date") as String?
+//                    timeSlot = document.get("timeslot") as String?
+//                    Log.d("GetActiveReq", "Retrieved active request: ${document.data}")
+//
+//                    val matchesRef = db.collection(selectedMode.toString())
+//                        .document(date.toString())
+//                        .collection(timeSlot.toString())
+//                    matchesRef
+//                        .whereEqualTo("successful", false)
+//                        .get()
+//                        .addOnSuccessListener { documents ->
+//                            for (doc in documents) {
+//                                if (doc.id == currentUserUid.toString()) {
+//                                    // skip ownself
+//                                    continue
+//                                }
+//                                matchesArray.add(doc)
+//                                Log.d(
+//                                    "DashboardSwipeActivity Match found",
+//                                    "${doc.id} => ${doc.data}"
+//                                )
+//                            }
+//                            for (doc in matchesArray) {
+//                                // get matched profile using doc.id
+//                                val profileRef = db.collection("users").document(doc.id)
+//                                var name: String
+//                                var desc: String
+//                                profileRef.get()
+//                                    .addOnSuccessListener { document ->
+//                                        if (document != null) {
+//                                            name = document.get("name").toString()
+//                                            desc = document.get("description").toString()
+//                                            Log.d("CardCreation", "Retrieved matching user data: ${document.data}")
+//                                            // add the card to data
+//                                            dataArray.add(
+//                                                TinderContactCardModel(
+//                                                    name = name, age = 27, description = desc, backgroundColor = Color.parseColor("#c50e29")
+//                                                )
+//                                            )
+//                                            Log.d("Add to data", "Card added for: ${name}")
+//                                            // check if arrayList is properly updated
+//                                            println("......print dataArray2......")
+//                                            println(dataArray.size.toString())
+//                                            for (card in dataArray) {
+//                                                println(card.name)
+//                                                println(card.age)
+//                                                println(card.description)
+//                                            }
+//
+//
+//                                        } else {
+//                                            Log.w("CardCreation", "Cannot retrieve matching user data")
+//                                        }
+//                                    }
+//                            }
+//
+//
+//
+//                        }
+//                        .addOnFailureListener { exception ->
+//                            Log.w("DashboardSwipeActivity", "Error getting documents: ", exception)
+//                        }
+//
+//                } else {
+//                    Log.w("GetActiveReq", "Cannot retrieve active request")
+//                }
+//
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.w("GetActiveReq", "getting active request failed with ", exception)
+//            }
+//
+//
+//
+//    }
 
 //    fun getData(): LiveData<ArrayList<TinderContactCardModel>> {
 //        val data: MutableLiveData<ArrayList<TinderContactCardModel>> = MutableLiveData<ArrayList<TinderContactCardModel>>()

@@ -44,7 +44,6 @@
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         android:stateListAnimator="@null"
-        app:icon="@drawable/ic_google"
         app:iconTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

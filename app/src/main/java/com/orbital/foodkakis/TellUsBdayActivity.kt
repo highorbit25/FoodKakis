@@ -58,6 +58,12 @@ class TellUsBdayActivity : AppCompatActivity() {
                     .addOnSuccessListener { Log.d("TellUsBday", "Age updated for: $currentUserUid") }
                     .addOnFailureListener { e -> Log.w("TellUsBday", "Error updating age", e) }
 
+                // Initialise the "swiped_on" field of the user
+                userRef
+                    .update("swiped_on", ArrayList<String>())
+                    .addOnSuccessListener { Log.d("TellUsBday", "Init swiped_on array for: $currentUserUid") }
+                    .addOnFailureListener { e -> Log.w("TellUsBday", "Error initialising swiped_on array", e) }
+
                 // move to DescribeYourselfActivity
                 val intent = Intent(this, DescribeYourselfActivity::class.java)
                 startActivity(intent)

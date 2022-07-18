@@ -46,7 +46,12 @@ object FirebaseProfileService {
                 .whereEqualTo("selected_mode", getDoc(currentUserUid)!!.get("selected_mode") as String)
                 .whereEqualTo("date", getDoc(currentUserUid)!!.get("date") as String)
                 .whereEqualTo("timeslot", getDoc(currentUserUid)!!.get("timeslot") as String)
-                .get().await().documents.mapNotNull { getProfileData(it.id) }
+                .whereNotEqualTo("name", getDoc(currentUserUid)!!.get("name") as String)    // exclude self
+                .get().await().documents.mapNotNull {
+                    if (swiped(it.id)!!) {
+                        null
+                    } else { getProfileData(it.id) }}
+
         } catch (e: Exception) {
             Log.e("TinderContactCardModel", "Error getting list of matches", e)
 //            FirebaseCrashlytics.getInstance().log("Error getting user friends")
@@ -57,32 +62,6 @@ object FirebaseProfileService {
         }
     }
 
-
-    suspend fun getMatches(selectedMode: String?, date: String?, timeSlot: String?): List<TinderContactCardModel> {
-//    suspend fun getMatches(): ArrayList<TinderContactCardModel> {
-        val db = FirebaseFirestore.getInstance()
-        mAuth = FirebaseAuth.getInstance()
-        val currentUserUid = mAuth.currentUser?.uid.toString()
-        // retrieve details of the request
-//        val docRef = db.collection("users").document(currentUserUid)
-        return try {
-            db.collection(selectedMode.toString())
-                        .document(date.toString())
-                        .collection(timeSlot.toString())
-                        .whereEqualTo("successful", false)
-                        .get().await().documents.mapNotNull { getProfileData(it.id) }
-
-
-//            db.collection("users").get().await().documents.mapNotNull { it.toCard() }
-        } catch (e: Exception) {
-            Log.e("TinderContactCardModel", "Error getting list of matches", e)
-//            FirebaseCrashlytics.getInstance().log("Error getting user friends")
-//            FirebaseCrashlytics.getInstance().setCustomKey("user id", xpertSlug)
-//            FirebaseCrashlytics.getInstance().recordException(e)
-            ArrayList<TinderContactCardModel>()
-//            emptyList<TinderContactCardModel>()
-        }
-    }
 
 
     suspend fun getDoc(userId: String): DocumentSnapshot? {
@@ -99,11 +78,14 @@ object FirebaseProfileService {
         }
     }
 
-    suspend fun getMode(userId: String): DocumentSnapshot? {
+    suspend fun swiped(userId: String): Boolean? {
         val db = FirebaseFirestore.getInstance()
+        mAuth = FirebaseAuth.getInstance()
+        val currentUserUid = mAuth.currentUser?.uid.toString()
         return try {
             db.collection("users")
-                .document(userId).get().await()
+                .whereEqualTo("name", getDoc(currentUserUid)!!.get("name") as String)
+                .whereArrayContains("swiped_on", userId).limit(1).get().await().documents.isNotEmpty()
         } catch (e: Exception) {
 //            Log.e(TAG, "Error getting user details", e)
 //            FirebaseCrashlytics.getInstance().log("Error getting user details")
@@ -113,19 +95,6 @@ object FirebaseProfileService {
         }
     }
 
-    suspend fun getDate(userId: String): DocumentSnapshot? {
-        val db = FirebaseFirestore.getInstance()
-        return try {
-            db.collection("users")
-                .document(userId).get().await()
-        } catch (e: Exception) {
-//            Log.e(TAG, "Error getting user details", e)
-//            FirebaseCrashlytics.getInstance().log("Error getting user details")
-//            FirebaseCrashlytics.getInstance().setCustomKey("user id", xpertSlug)
-//            FirebaseCrashlytics.getInstance().recordException(e)
-            null
-        }
-    }
 
 
 }

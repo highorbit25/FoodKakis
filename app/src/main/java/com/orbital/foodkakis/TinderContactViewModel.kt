@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide.init
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -30,6 +31,10 @@ class TinderContactViewModel(): ViewModel() {
 
     val modelStream: LiveData<TinderContactModel>
         get() = stream
+
+    private val _finish = MutableLiveData<Boolean>()
+    val finish: LiveData<Boolean>
+        get() = _finish
 
 
 //    private val data = arrayListOf<TinderContactCardModel>(
@@ -61,10 +66,6 @@ class TinderContactViewModel(): ViewModel() {
         get() = dataArray[currentIndex % dataArray.size]
     private val bottomCard
         get() = dataArray[(currentIndex + 1) % dataArray.size]
-//    private val topCard
-//        get() = list[currentIndex % list.size]
-//    private val bottomCard
-//        get() = list[(currentIndex + 1) % list.size]
 
 
     fun swipe() {
@@ -73,105 +74,32 @@ class TinderContactViewModel(): ViewModel() {
     }
 
     private fun updateCards() {
-        stream.value = TinderContactModel(
-            cardTop = topCard,
-            cardBottom = bottomCard
-        )
-//        stream.value = TinderContactModel(
-//            cardTop = list[currentIndex % list.size],
-//            cardBottom = list[(currentIndex + 1) % list.size]
-//
-//        )
+        if (currentIndex >= dataArray.size) {
+            // no more matches to display
+            Log.d("UpdateCards", "No more matches to display")
+//            stream.value = TinderContactModel(
+//                cardTop = TinderContactCardModel("",
+//                    "",
+//                    "",
+//                    "https://st2.depositphotos.com/1008768/8271/i/950/depositphotos_82711600-stock-photo-no-more-sign.jpg",
+//                    Color.parseColor("#205375")),
+//                cardBottom = TinderContactCardModel("",
+//                    "",
+//                    "",
+//                    "https://st2.depositphotos.com/1008768/8271/i/950/depositphotos_82711600-stock-photo-no-more-sign.jpg",
+//                    Color.parseColor("#205375"))
+//            )
+            _finish.value = true
+        } else {
+            stream.value = TinderContactModel(
+                cardTop = topCard,
+                cardBottom = bottomCard
+            )
+        }
+
 
     }
 
-
-
-//    fun getMatches() {
-//        mAuth = FirebaseAuth.getInstance()
-//        val currentUserUid = mAuth.currentUser?.uid.toString()
-//        val db = Firebase.firestore
-//        // retrieve details of the request
-//        val docRef = db.collection("users").document(currentUserUid)
-//        var selectedMode: String?
-//        var date: String?
-//        var timeSlot: String?
-//        val matchesArray = ArrayList<QueryDocumentSnapshot>()
-//        val dataArray = ArrayList<TinderContactCardModel>()
-//
-//        docRef.get()
-//            .addOnSuccessListener { document ->
-//                if (document.get("active_request") == true) {
-//                    selectedMode = document.get("selected_mode") as String?
-//                    date = document.get("date") as String?
-//                    timeSlot = document.get("timeslot") as String?
-//                    Log.d("GetActiveReq", "Retrieved active request: ${document.data}")
-//
-//                    val matchesRef = db.collection(selectedMode.toString())
-//                        .document(date.toString())
-//                        .collection(timeSlot.toString())
-//                    matchesRef
-//                        .whereEqualTo("successful", false)
-//                        .get()
-//                        .addOnSuccessListener { documents ->
-//                            for (doc in documents) {
-//                                if (doc.id == currentUserUid.toString()) {
-//                                    // skip ownself
-//                                    continue
-//                                }
-//                                matchesArray.add(doc)
-//                                Log.d(
-//                                    "DashboardSwipeActivity Match found",
-//                                    "${doc.id} => ${doc.data}"
-//                                )
-//                            }
-//                            for (doc in matchesArray) {
-//                                // get matched profile using doc.id
-//                                val profileRef = db.collection("users").document(doc.id)
-//                                var name: String
-//                                var desc: String
-//                                profileRef.get()
-//                                    .addOnSuccessListener { document ->
-//                                        if (document != null) {
-//                                            name = document.get("name").toString()
-//                                            desc = document.get("description").toString()
-//                                            Log.d("CardCreation", "Retrieved matching user data: ${document.data}")
-//                                            // add the card to data
-//                                            data.add(
-//                                                TinderContactCardModel(
-//                                                    name = name, age = 27, description = desc, backgroundColor = Color.parseColor("#c50e29")
-//                                                )
-//                                            )
-//                                            Log.d("Add to data", "Card added for: ${name}")
-//                                            // check if arrayList is properly updated
-//                                            println("......print dataArray......")
-//                                            println(data.size.toString())
-//                                            for (card in data) {
-//                                                println(card.name)
-//                                                println(card.age)
-//                                                println(card.description)
-//                                            }
-//
-//                                        } else {
-//                                            Log.w("CardCreation", "Cannot retrieve matching user data")
-//                                        }
-//                                    }
-//                            }
-//
-//                        }
-//                        .addOnFailureListener { exception ->
-//                            Log.w("DashboardSwipeActivity", "Error getting documents: ", exception)
-//                        }
-//
-//                } else {
-//                    Log.w("GetActiveReq", "Cannot retrieve active request")
-//                }
-//            }
-//            .addOnFailureListener { exception ->
-//                Log.w("GetActiveReq", "getting active request failed with ", exception)
-//            }
-//
-//    }
 
     init {
         viewModelScope.launch {

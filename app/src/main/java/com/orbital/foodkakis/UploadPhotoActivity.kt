@@ -4,14 +4,18 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.orbital.foodkakis.databinding.ActivityUploadPhotoBinding
+import kotlinx.android.synthetic.main.activity_dashboard_swipe.*
 import kotlinx.android.synthetic.main.activity_upload_photo.*
 
 class UploadPhotoActivity : AppCompatActivity() {
@@ -20,6 +24,7 @@ class UploadPhotoActivity : AppCompatActivity() {
     private var mSelectedImageFileUri: Uri? = null
     private lateinit var currentUserUid: String
     private lateinit var binding: ActivityUploadPhotoBinding
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +73,7 @@ class UploadPhotoActivity : AppCompatActivity() {
             val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
                 "users/ $currentUserUid/profile.jpg"
             )
+            val db = Firebase.firestore
             sRef.putFile(mSelectedImageFileUri!!)
                 .addOnSuccessListener { taskSnapshot ->
                     taskSnapshot.metadata!!.reference!!.downloadUrl
@@ -77,12 +83,22 @@ class UploadPhotoActivity : AppCompatActivity() {
                             binding.profileImage.visibility = View.VISIBLE
                             binding.nextButton.visibility = View.VISIBLE
                             Toast.makeText(this, "Photo updated", Toast.LENGTH_SHORT).show()
+
+                            // Set the "profile_image" field of the user
+                            val userRef = db.collection("users").document(currentUserUid)
+                            userRef
+                                .update("profile_image", url)
+                                .addOnSuccessListener { Log.d("UploadPhoto", "Photo uri updated for: $currentUserUid") }
+                                .addOnFailureListener { e -> Log.w("UploadPhoto", "Error updating photo uri", e) }
                         }
                 }.addOnFailureListener {
                     binding.progressBar.visibility = View.INVISIBLE
                     binding.profileImage.visibility = View.VISIBLE
                     Toast.makeText(this, "Photo upload failed", Toast.LENGTH_SHORT).show()
                 }
+
+
+
         } else {
             Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
         }

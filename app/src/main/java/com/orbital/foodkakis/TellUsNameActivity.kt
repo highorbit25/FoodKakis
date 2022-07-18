@@ -21,19 +21,19 @@ class TellUsNameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mAuth = FirebaseAuth.getInstance()
-        val currentUser = mAuth.currentUser
         val currentUserUid = mAuth.currentUser?.uid.toString()
         val db = Firebase.firestore
 
         binding.nextButton.setOnClickListener {
             val nameFill = tellUsNameFill.text.toString()
-            if (nameFill != null) {
-                val name = hashMapOf("name" to nameFill)
+            if (nameFill != "") {
+                val name = hashMapOf("name" to nameFill,
+                                     "id" to currentUserUid)
                 // Add a new document with a generated ID
                 db.collection("users").document(currentUserUid)
                     .set(name)
-                    .addOnSuccessListener { documentReference ->
-                        Log.d("TellUsName", "Name updated for: ${currentUserUid}")
+                    .addOnSuccessListener {
+                        Log.d("TellUsName", "Name updated for: $currentUserUid")
                     }
                     .addOnFailureListener { e ->
                         Log.w("TellUsName", "Error updating name", e)

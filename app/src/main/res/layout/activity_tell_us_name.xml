@@ -15,6 +15,7 @@
         android:textColor="@color/black"
         android:textSize="27sp"
         android:textStyle="bold"
+        android:inputType="textCapWords"
         app:layout_constraintStart_toStartOf="@+id/tellUsNameFill"
         app:layout_constraintTop_toTopOf="parent" />
 
