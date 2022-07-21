@@ -9,6 +9,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.cometchat.pro.core.CometChat
+import com.cometchat.pro.exceptions.CometChatException
+import com.cometchat.pro.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -90,6 +93,20 @@ class UploadPhotoActivity : AppCompatActivity() {
                                 .update("profile_image", url)
                                 .addOnSuccessListener { Log.d("UploadPhoto", "Photo uri updated for: $currentUserUid") }
                                 .addOnFailureListener { e -> Log.w("UploadPhoto", "Error updating photo uri", e) }
+
+
+                            // Update photo for Comet here
+                            val updatedUser = User()
+                            updatedUser.avatar = url.toString()
+                            CometChat.updateCurrentUserDetails(updatedUser, object : CometChat.CallbackListener<User>() {
+                                override fun onSuccess(user: User) {
+                                    Log.d("CometPhoto", "${user.toString()} Photo updated" )
+                                }
+
+                                override fun onError(e: CometChatException) {
+                                    Log.e("CometPhoto", e.message!!)
+                                }
+                            })
                         }
                 }.addOnFailureListener {
                     binding.progressBar.visibility = View.INVISIBLE

@@ -77,18 +77,6 @@ class TinderContactViewModel(): ViewModel() {
         if (currentIndex >= dataArray.size) {
             // no more matches to display
             Log.d("UpdateCards", "No more matches to display")
-//            stream.value = TinderContactModel(
-//                cardTop = TinderContactCardModel("",
-//                    "",
-//                    "",
-//                    "https://st2.depositphotos.com/1008768/8271/i/950/depositphotos_82711600-stock-photo-no-more-sign.jpg",
-//                    Color.parseColor("#205375")),
-//                cardBottom = TinderContactCardModel("",
-//                    "",
-//                    "",
-//                    "https://st2.depositphotos.com/1008768/8271/i/950/depositphotos_82711600-stock-photo-no-more-sign.jpg",
-//                    Color.parseColor("#205375"))
-//            )
             _finish.value = true
         } else {
             stream.value = TinderContactModel(
@@ -118,14 +106,11 @@ class TinderContactViewModel(): ViewModel() {
                         date = document.get("date") as String?
                         timeSlot = document.get("timeslot") as String?
                         Log.d("GetActiveReq", "Retrieved active request: ${document.data}")
-//                        list = FirebaseProfileService.getMatches(selectedMode, date, timeSlot)
                     }
                 }
 
-//            list = FirebaseProfileService.getMatches(selectedMode, date, timeSlot)
             list = FirebaseProfileService.getMatches()
             dataArray = ArrayList<TinderContactCardModel>(list)
-//            dataArray = FirebaseProfileService.getMatches()
             Log.w("viewModelScope", "got list from Firebase ")
             println(list.size.toString())
             for (card in list) {

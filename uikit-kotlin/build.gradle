@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+//apply plugin: 'com.google.gms.google-services'
 android {
     compileSdk 32
 
@@ -11,7 +12,7 @@ android {
 
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 30
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -44,7 +45,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion = '28.0.3'
+//    buildToolsVersion = '28.0.3'
     sourceSets {
         main {
             res {
@@ -59,9 +60,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.preference:preference:1.2.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.0"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-//    implementation project(path: ':app')
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
     testImplementation 'junit:junit:4.12'
 
     implementation 'androidx.annotation:annotation:1.1.0'

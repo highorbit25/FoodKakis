@@ -44,10 +44,24 @@ class TellUsNameActivity : AppCompatActivity() {
                         val user = User()
                         user.uid = currentUserUid // Replace with your uid for the user to be created.
                         user.name = nameFill // Replace with the name of the user
+//                        user.avatar = "https://firebasestorage.googleapis.com/v0/b/foodkakis-e32aa.appspot.com/o/users%2F%20kvps8SvJiCc6ydLz4ZCHw579vzz2%2Fprofile.jpg?alt=media&token=96f2fb4e-b07e-4715-b96e-1965007f4421"
 
                         CometChat.createUser(user, apiKey, object : CometChat.CallbackListener<User>() {
                             override fun onSuccess(user: User) {
                                 Log.d("createUser", "${user.toString()} on Comet Chat")
+
+                                // Login once registered
+                                val UID = currentUserUid // Replace with the UID of the user to login
+                                val AUTH_KEY = "6681d7867030ba5820064c057e2bbca034e2d2a0" // Replace with your App Auth Key
+                                CometChat.login(UID, AUTH_KEY, object : CometChat.CallbackListener<User?>() {
+                                    override fun onSuccess(user: User?) {
+                                        Log.d(ContentValues.TAG, "Login Successful : "+user.toString())
+                                    }
+
+                                    override fun onError(e: CometChatException) {
+                                        Log.d(ContentValues.TAG, "Login failed with exception: " + e.message)
+                                    }
+                                })
                             }
 
                             override fun onError(e: CometChatException) {
@@ -55,18 +69,7 @@ class TellUsNameActivity : AppCompatActivity() {
                             }
                         })
 
-                        val currentUserUid = mAuth.currentUser?.uid.toString()
-                        val UID = currentUserUid // Replace with the UID of the user to login
-                        val AUTH_KEY = "6681d7867030ba5820064c057e2bbca034e2d2a0" // Replace with your App Auth Key
-                        CometChat.login(UID, AUTH_KEY, object : CometChat.CallbackListener<User?>() {
-                            override fun onSuccess(user: User?) {
-                                Log.d(ContentValues.TAG, "Login Successful : "+user.toString())
-                            }
 
-                            override fun onError(e: CometChatException) {
-                                Log.d(ContentValues.TAG, "Login failed with exception: " + e.message);
-                            }
-                        })
                     }
                     .addOnFailureListener { e ->
                         Log.w("TellUsName", "Error updating name", e)

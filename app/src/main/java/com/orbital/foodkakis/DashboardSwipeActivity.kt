@@ -213,14 +213,6 @@ class DashboardSwipeActivity : AppCompatActivity() {
                                         db.collection("users").document(curMatchId).update("active_request", false)
                                         Log.d("MutualSwipe", "Removed active_request for $currentUserUid & $curMatchId")
 
-                                        // Remove swiped_on array for both matched users
-//                                        val deleteSwipedArray = hashMapOf<String, Any>(
-//                                            "swiped_on" to arrayListOf<String>()
-//                                        )
-//                                        db.collection("users").document(currentUserUid).update(deleteSwipedArray).addOnCompleteListener {
-//                                            Log.d("MutualSwipe", "Removed swiped_on array for $currentUserUid")
-//                                        }
-
                                         startConvo(curMatchId)
                                         Thread.sleep(1_000)
 
