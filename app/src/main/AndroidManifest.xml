@@ -17,6 +17,9 @@
             android:name=".DashboardNoMoreMatches"
             android:exported="false" />
         <activity
+            android:name="com.cometchat.pro.uikit.ui_components.messages.forward_message.CometChatForwardMessageActivity"
+            android:exported="false" />
+        <activity
             android:name=".UploadPhotoActivity"
             android:exported="false" />
         <activity
@@ -88,7 +91,7 @@
             android:exported="false" />
         <activity
             android:name=".SignInActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

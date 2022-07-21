@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -12,7 +13,12 @@ android {
         viewBinding = true
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
+        manifestPlaceholders = [file_provider: "com.orbital.foodkakis"]
         applicationId "com.orbital.foodkakis"
 //        minSdk 21
         minSdk 26
@@ -42,6 +48,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
+//    implementation 'com.google.android.material:material:1.3.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.constraintlayout:constraintlayout-compose:1.0.1'
@@ -55,11 +62,20 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(path: ':uikit-kotlin')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.4.1'
+
+    implementation 'com.cometchat:pro-android-chat-sdk:3.0.9'
+
+    /*v2.4+ onwards, Voice & Video Calling functionality has been
+  moved to a separate library. In case you plan to use the calling feature,
+  please add the Calling dependency*/
+
+    implementation 'com.cometchat:pro-android-calls-sdk:2.1.0'
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'

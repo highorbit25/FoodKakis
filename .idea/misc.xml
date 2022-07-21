@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable-v24/ic_baseline_dashboard_24.xml" value="0.1855" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable-v24/modeSelect.xml" value="0.1255" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/arrow_back_24px.xml" value="0.1" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/blue_btn.xml" value="0.1255" />
@@ -51,6 +52,62 @@
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/fragment_notifications.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/tinder_scene1.xml" value="0.1" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/drawable/ic_baseline_person_24.xml" value="0.169" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/drawable/tab_background_state.xml" value="0.1855" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/drawable/tab_layout_background.xml" value="0.1855" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/drawable/tab_layout_background_active.xml" value="0.1855" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layout/activity_start_conversation_from_chat.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layout/dialog_permission_alert.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/calls/layout/activity_cometchat_callmanager.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/calls/layout/activity_cometchat_start_call.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/chats/layout/cometchat_conversation_list_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/chats/layout/conversation_shimmer.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/chats/layout/conversation_shimmer_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/chats/layout/fragment_conversation_screen.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/groups/layout/activity_cometchat_ban_members.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/groups/layout/activity_cometchat_group_detail.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/groups/layout/cometchat_update_group_dialog.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/groups/layout/fragment_cometchat_add_member.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/groups/layout/fragment_cometchat_create_group.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messagebubbles/layout/message_action_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messagebubbles/layout/message_left_group_call_item.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/activity_cometchat_forward_message.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/activity_cometchat_message_info.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/activity_cometchat_message_list.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/cometchat_error_message_view.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/cometchat_messagedate_header.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/cometchat_messagelist_toolbar.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/cometchat_receipts_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/cometchat_reply_message_view.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/cometchat_threadlist_toolbar.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/fragment_cometchat_messagelist.xml" value="0.25" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/messages/layout/message_placeholder.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/activity_screen.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/cometchat_sticker_view.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/create_poll_layout.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/custom_toast.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/divider.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/footer_decor.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/fragment_emoji_objects.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/fragment_stickers_view.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/group_list_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/image_dialog_view.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/others/layout/map_share_layout.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/shared/layout/cometchat_shared_media.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/shared/layout/cometchat_shared_media_file_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/shared/layout/cometchat_shared_media_image_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/shared/layout/cometchat_shared_media_video_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/shared/layout/cometchat_smart_reply.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/shared/layout/cometchat_smartreply_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/users/layout/cometchat_update_user_dialog.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/users/layout/cometchat_user_list_item.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/users/layout/cometchat_userlist_header.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/layouts/users/layout/fragment_cometchat_userlist.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/menu/bottom_nav_menu.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/menu/cometchat_navigation_bottom.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/menu/cometchat_navigation_bottom_backup.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/menu/cometchat_reaction_nav.xml" value="0.2203125" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/menu/group_action_menu.xml" value="0.2203125" />
         <entry key="..\:/Users/baobi/OneDrive - National University of Singapore/Desktop/FoodKakis - Orbital/Kotlin/TestApp/app/src/main/res/drawable/ic_google.xml" value="0.173" />
         <entry key="..\:/Users/baobi/OneDrive - National University of Singapore/Desktop/FoodKakis - Orbital/Kotlin/TestApp/app/src/main/res/drawable/ic_signin_background.xml" value="0.173" />
         <entry key="..\:/Users/baobi/OneDrive - National University of Singapore/Desktop/FoodKakis - Orbital/Kotlin/TestApp/app/src/main/res/drawable/ic_welcome.xml" value="0.173" />

@@ -1,10 +1,15 @@
 package com.orbital.foodkakis
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.cometchat.pro.core.AppSettings
+import com.cometchat.pro.core.CometChat
+import com.cometchat.pro.exceptions.CometChatException
+import com.cometchat.pro.models.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -62,20 +67,19 @@ class SignInActivity : AppCompatActivity() {
 
                 mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val isNewUser: Boolean? = it.getResult().additionalUserInfo?.isNewUser
+                        val isNewUser: Boolean? = it.getResult()?.additionalUserInfo?.isNewUser
                         if (isNewUser!!) {
                             val intent = Intent(this, TellUsNameActivity::class.java)
                             startActivity(intent)
                             finish()
                         } else {
                             // existing user
-                            val intent = Intent(this, ProfileActivity::class.java)
+                            signInComet()
+                            val intent = Intent(this, DashboardActivity::class.java)
                             startActivity(intent)
                             finish()
                         }
 
-//                        val intent = Intent(this, ProfileActivity::class.java)
-//                        startActivity(intent)
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
 
@@ -100,6 +104,21 @@ class SignInActivity : AppCompatActivity() {
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    private fun signInComet() {
+        val currentUserUid = mAuth.currentUser?.uid.toString()
+        val UID = currentUserUid // Replace with the UID of the user to login
+        val AUTH_KEY = "6681d7867030ba5820064c057e2bbca034e2d2a0" // Replace with your App Auth Key
+        CometChat.login(UID, AUTH_KEY, object : CometChat.CallbackListener<User?>() {
+            override fun onSuccess(user: User?) {
+                Log.d(ContentValues.TAG, "Login Successful : "+user.toString())
+            }
+
+            override fun onError(e: CometChatException) {
+                Log.d(ContentValues.TAG, "Login failed with exception: " + e.message);
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -134,14 +153,15 @@ class SignInActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("SignInActivity", "signInWithCredential:success")
-                    val isNewUser: Boolean? = task.getResult().additionalUserInfo?.isNewUser
+                    val isNewUser: Boolean? = task.getResult()?.additionalUserInfo?.isNewUser
                     if (isNewUser!!) {
                         val intent = Intent(this, TellUsNameActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
+                        signInComet()
                         // existing user
-                        val intent = Intent(this, ProfileActivity::class.java)
+                        val intent = Intent(this, DashboardActivity::class.java)
                         startActivity(intent)
                         finish()
                     }

@@ -1,5 +1,6 @@
 package com.orbital.foodkakis
 
+import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -14,6 +15,10 @@ import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.cometchat.pro.constants.CometChatConstants
+import com.cometchat.pro.core.CometChat
+import com.cometchat.pro.exceptions.CometChatException
+import com.cometchat.pro.models.TextMessage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
@@ -24,6 +29,7 @@ import com.orbital.foodkakis.databinding.ActivityDashboardSwipeBinding
 import kotlinx.android.synthetic.main.activity_dashboard_swipe.*
 import kotlinx.android.synthetic.main.activity_dashboard_swipe.view.*
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.coroutines.tasks.await
 
 //import kotlinx.android.synthetic.main.activity_tinder_scene9.*
@@ -180,7 +186,11 @@ class DashboardSwipeActivity : AppCompatActivity() {
                                 }
                             // let us also add the curMatchId to the user's swiped_on array -> ensure user not shown
                             // the same profile on subsequent visits
-                            db.collection("users").document(currentUserUid).update("swiped_on", FieldValue.arrayUnion(curMatchId))
+                            db.collection("users").document(currentUserUid)
+                                .update("swiped_on", FieldValue.arrayUnion(curMatchId))
+                                .addOnCompleteListener {
+                                    Log.d("Swiped_On", "Added: $curMatchId to swiped_on array")
+                                }
 
                             // Check if curUser has been mutually swiped by curMatch by looking at curMatch's swiped right list
                             db.collection("users").document(curMatchId).collection("swiped_right")
@@ -203,7 +213,16 @@ class DashboardSwipeActivity : AppCompatActivity() {
                                         db.collection("users").document(curMatchId).update("active_request", false)
                                         Log.d("MutualSwipe", "Removed active_request for $currentUserUid & $curMatchId")
 
+                                        // Remove swiped_on array for both matched users
+//                                        val deleteSwipedArray = hashMapOf<String, Any>(
+//                                            "swiped_on" to arrayListOf<String>()
+//                                        )
+//                                        db.collection("users").document(currentUserUid).update(deleteSwipedArray).addOnCompleteListener {
+//                                            Log.d("MutualSwipe", "Removed swiped_on array for $currentUserUid")
+//                                        }
 
+                                        startConvo(curMatchId)
+                                        Thread.sleep(1_000)
 
                                         motionLayout.progress = 0f
                                         motionLayout.setTransition(R.id.start, R.id.detail)
@@ -243,7 +262,11 @@ class DashboardSwipeActivity : AppCompatActivity() {
                 }
             // let us also add the curMatchId to the user's swiped_on array -> ensure user not shown
             // the same profile on subsequent visits
-            db.collection("users").document(currentUserUid).update("swiped_on", FieldValue.arrayUnion(curMatchId))
+            db.collection("users").document(currentUserUid)
+                .update("swiped_on", FieldValue.arrayUnion(curMatchId))
+                .addOnCompleteListener {
+                    Log.d("Swiped_On", "Added: $curMatchId to swiped_on array")
+                }
 
             // Check if curUser has been mutually swiped by curMatch by looking at curMatch's swiped right list
             db.collection("users").document(curMatchId).collection("swiped_right")
@@ -265,6 +288,21 @@ class DashboardSwipeActivity : AppCompatActivity() {
                         db.collection("users").document(currentUserUid).update("active_request", false)
                         db.collection("users").document(curMatchId).update("active_request", false)
                         Log.d("MutualSwipe", "Removed active_request for $currentUserUid & $curMatchId")
+
+                        // Remove swiped_on array for both matched users
+//                        val deleteSwipedArray = hashMapOf<String, Any>(
+//                            "swiped_on" to arrayListOf<String>()
+//                        )
+//                        db.collection("users").document(currentUserUid).update(deleteSwipedArray).addOnCompleteListener {
+//                            Log.d("MutualSwipe", "Removed swiped_on array for $currentUserUid")
+//                        }
+//                        db.collection("users").document(curMatchId).update(deleteSwipedArray)
+//                        db.collection("users").document(currentUserUid).update("swiped_on", null)
+//                        db.collection("users").document(curMatchId).update("swiped_on", null)
+//                        Log.d("MutualSwipe", "Removed swiped_on array for $currentUserUid & $curMatchId")
+
+                        startConvo(curMatchId)
+                        Thread.sleep(1_000)
 
                         // Redirect to Matches Activity
                         val MatchesIntent = Intent(this, MatchesActivity::class.java)
@@ -294,14 +332,20 @@ class DashboardSwipeActivity : AppCompatActivity() {
                 .set(swipedLeft)
                 .addOnSuccessListener {
                     Log.d("SwipedLeftOn", "Swiped Left on: $curMatchId")
+
+                    // let us also add the curMatchId to the user's swiped_on array -> ensure user not shown
+                    // the same profile on subsequent visits
+                    db.collection("users").document(currentUserUid)
+                        .update("swiped_on", FieldValue.arrayUnion(curMatchId))
+                        .addOnCompleteListener {
+                            Log.d("Swiped_On", "Added: $curMatchId to swiped_on array")
+                        }
                 }
                 .addOnFailureListener { e ->
                     Log.w("SwipedLeftOn", "Error adding to swiped left list", e)
                 }
 
-            // let us also add the curMatchId to the user's swiped_on array -> ensure user not shown
-            // the same profile on subsequent visits
-            db.collection("users").document(currentUserUid).update("swiped_on", FieldValue.arrayUnion(curMatchId))
+
 
 
             motionLayout.transitionToState(R.id.unlike)
@@ -312,96 +356,71 @@ class DashboardSwipeActivity : AppCompatActivity() {
 
     fun goMatches() {
         // Redirect to Matches Activity
-        val MatchesIntent = Intent(this, MatchesActivity::class.java)
-        startActivity(MatchesIntent)
+        val matchesIntent = Intent(this, MatchesActivity::class.java)
+        startActivity(matchesIntent)
     }
 
+    fun startConvo(curMatchId: String) {
+        val db = Firebase.firestore
+        val currentUserUid = mAuth.currentUser?.uid.toString()
+        val userARef = db.collection("users").document(currentUserUid)
+        val userBRef = db.collection("users").document(curMatchId)
+        var nameOfA: String
+        var nameOfB: String
+        val cravingsOfA = ArrayList<String>()
+        val cravingsOfB = ArrayList<String>()
+        var timeslot: String
+        var date: String
 
-//    fun getMatches() {
-//        mAuth = FirebaseAuth.getInstance()
-//        val currentUserUid = mAuth.currentUser?.uid.toString()
-//        val db = Firebase.firestore
-//        // retrieve details of the request
-//        val docRef = db.collection("users").document(currentUserUid)
-//        var selectedMode: String?
-//        var date: String?
-//        var timeSlot: String?
-//        val matchesArray = ArrayList<QueryDocumentSnapshot>()
-//
-//
-//        docRef.get()
-//            .addOnSuccessListener { document ->
-//                if (document.get("active_request") == true) {
-//                    selectedMode = document.get("selected_mode") as String?
-//                    date = document.get("date") as String?
-//                    timeSlot = document.get("timeslot") as String?
-//                    Log.d("GetActiveReq", "Retrieved active request: ${document.data}")
-//
-//                    val matchesRef = db.collection(selectedMode.toString())
-//                        .document(date.toString())
-//                        .collection(timeSlot.toString())
-//                    matchesRef
-//                        .whereEqualTo("successful", false)
-//                        .get()
-//                        .addOnSuccessListener { documents ->
-//                            for (doc in documents) {
-//                                if (doc.id == currentUserUid.toString()) {
-//                                    // skip ownself
-//                                    continue
-//                                }
-//                                matchesArray.add(doc)
-//                                Log.d(
-//                                    "DashboardSwipeActivity Match found",
-//                                    "${doc.id} => ${doc.data}"
-//                                )
-//                            }
-//                            for (doc in matchesArray) {
-//                                // get matched profile using doc.id
-//                                val profileRef = db.collection("users").document(doc.id)
-//                                var name: String
-//                                var desc: String
-//                                profileRef.get()
-//                                    .addOnSuccessListener { document ->
-//                                        if (document != null) {
-//                                            name = document.get("name").toString()
-//                                            desc = document.get("description").toString()
-//                                            Log.d("CardCreation", "Retrieved matching user data: ${document.data}")
-//                                            // add the card to data
-//                                            dataArray.add(
-//                                                TinderContactCardModel(
-//                                                    name = name, age = 27, description = desc, backgroundColor = Color.parseColor("#c50e29")
-//                                                )
-//                                            )
-//                                            Log.d("Add to data", "Card added for: ${name}")
-//                                            // check if arrayList is properly updated
-//                                            println("......print dataArray......")
-//                                            println(dataArray.size.toString())
-//                                            for (card in dataArray) {
-//                                                println(card.name)
-//                                                println(card.age)
-//                                                println(card.description)
-//                                            }
-//
-//                                        } else {
-//                                            Log.w("CardCreation", "Cannot retrieve matching user data")
-//                                        }
-//                                    }
-//                            }
-//
-//                        }
-//                        .addOnFailureListener { exception ->
-//                            Log.w("DashboardSwipeActivity", "Error getting documents: ", exception)
-//                        }
-//
-//                } else {
-//                    Log.w("GetActiveReq", "Cannot retrieve active request")
-//                }
-//            }
-//            .addOnFailureListener { exception ->
-//                Log.w("GetActiveReq", "getting active request failed with ", exception)
-//            }
-////        return dataArray
-//
-//    }
+
+        userARef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    nameOfA = document.get("name") as String
+                    Log.d("GetUserAData", "Retrieved user A data: ${document.data}")
+                } else {
+                    Log.d("GetUserAData", "Cannot retrieve user A data")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("GetUserAData", "get failed with ", exception)
+            }
+
+        userBRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    nameOfB = document.get("name") as String
+                    date = document.get("date") as String
+                    timeslot = document.get("timeslot") as String
+                    Log.d("GetUserBData", "Retrieved user B data: ${document.data}")
+
+                    // Start chat between matched users
+                    val receiverID: String = curMatchId
+                    val messageText: String = "Hello $nameOfB, we have matched as FoodKakis for $date at" +
+                            " $timeslot!!! Let's discuss the details of our meetup here! "
+                    val receiverType: String = CometChatConstants.RECEIVER_TYPE_USER
+
+                    val textMessage = TextMessage(receiverID, messageText,receiverType)
+
+                    CometChat.sendMessage(textMessage, object : CometChat.CallbackListener<TextMessage>() {
+                        override fun onSuccess(p0: TextMessage?) {
+                            Log.d(ContentValues.TAG, "Starting message sent successfully: " + p0?.toString())
+                        }
+
+                        override fun onError(p0: CometChatException?) {
+                            Log.d(ContentValues.TAG, "Starting message failed with exception: " + p0?.message)          }
+
+                    })
+
+                } else {
+                    Log.d("GetUserBData", "Cannot retrieve user B data")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("GetUserBData", "get failed with ", exception)
+            }
+
+
+    }
 
 }

@@ -179,6 +179,31 @@ class DashboardActivity : AppCompatActivity() {
                             "DashboardActivity",
                             "Active request stored for: $currentUserUid\" "
                         )
+
+                        // Wipe swiped_on array for user when new request is created
+                        val deleteSwipedArray = hashMapOf<String, Any>(
+                            "swiped_on" to arrayListOf<String>()
+                        )
+                        db.collection("users").document(currentUserUid).update(deleteSwipedArray).addOnCompleteListener {
+                            Log.d("Wiped swiped_on", "Removed swiped_on array for $currentUserUid")
+                        }
+
+                        // Wipe swiped_right & swiped_left sub-collections for user when new request is created
+                        db.collection("users").document(currentUserUid).collection("swiped_right").get()
+                            .addOnSuccessListener { docs ->
+                                for(doc in docs.documents) {
+                                    doc.reference.delete()
+                                }
+                                Log.d("Wiped swiped_right", "Removed swiped_right collection for $currentUserUid")
+                            }
+                        db.collection("users").document(currentUserUid).collection("swiped_left").get()
+                            .addOnSuccessListener { docs ->
+                                for(doc in docs.documents) {
+                                    doc.reference.delete()
+                                }
+                                Log.d("Wiped swiped_left", "Removed swiped_left collection for $currentUserUid")
+                            }
+
                     }
                     .addOnFailureListener { e ->
                         Log.w(

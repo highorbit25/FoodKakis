@@ -8,7 +8,7 @@
     android:padding="0dp"
     tools:context=".SignInActivity">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -19,6 +19,7 @@
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="@string/sign_in_with_google"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
@@ -29,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_in_btn_email" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_btn_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -40,6 +41,7 @@
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="@string/sign_in_with_email"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
