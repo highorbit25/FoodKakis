@@ -78,11 +78,16 @@ dependencies {
 
     implementation 'com.cometchat:pro-android-calls-sdk:2.1.0'
 
-    //Glide
+    // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
-    //Circular ImageView
+    // Circular ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Android Searchable Multi Select Spinner
+    implementation 'com.github.telichada:SearchableMultiSelectSpinner:2.0'
+
+    implementation 'com.github.doyaaaaaken:kotlin-csv-jvm:1.4.0'
 
 
 }

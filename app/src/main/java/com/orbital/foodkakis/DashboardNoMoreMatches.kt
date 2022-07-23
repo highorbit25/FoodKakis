@@ -3,17 +3,43 @@ package com.orbital.foodkakis
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityDashboardNoMoreMatchesBinding
 import com.orbital.foodkakis.databinding.ActivityDashboardSwipeBinding
 
 class DashboardNoMoreMatches : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardNoMoreMatchesBinding
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardNoMoreMatchesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.cancelButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Are you sure you want to cancel request?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") {
+                        dialog, id ->
+                    mAuth = FirebaseAuth.getInstance()
+                    val db = Firebase.firestore
+                    val currentUserUid = mAuth.currentUser?.uid.toString()
+                    db.collection("users").document(currentUserUid).update("active_request", false)
+                    val dashboardIntent= Intent(this, DashboardActivity::class.java)
+                    startActivity(dashboardIntent)
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    // Dismiss the dialog
+                    dialog.dismiss()
+                }
+            val alert = builder.create()
+            alert.show()
+        }
 
 
         // Logic for Navigation Bar

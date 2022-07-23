@@ -7,12 +7,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.devstune.searchablemultiselectspinner.SearchableItem
+import com.devstune.searchablemultiselectspinner.SearchableMultiSelectSpinner
+import com.devstune.searchablemultiselectspinner.SelectionCompleteListener
 import com.google.android.material.chip.Chip
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
@@ -21,6 +21,7 @@ import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityDashboardBinding
 import java.text.SimpleDateFormat
 import java.util.*
+import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 
 
 class DashboardActivity : AppCompatActivity() {
@@ -50,6 +51,8 @@ class DashboardActivity : AppCompatActivity() {
         val db = Firebase.firestore
         val activeReq = db.collection("users").document(currentUserUid)
 
+//        readCSV()
+
 //         check if there is existing request, if there is redirect to DashboardSwipeActivity
         activeReq.get()
             .addOnSuccessListener { document ->
@@ -71,7 +74,7 @@ class DashboardActivity : AppCompatActivity() {
             binding.modeCorpconnect.setTextColor(resources.getColor(R.color.black))
             binding.selectSurprise.setBackgroundColor(resources.getColor(R.color.white))
             binding.modeSurpriseme.setTextColor(resources.getColor(R.color.black))
-            Log.d("DashboardActivity", "FoodKaki mode selected")
+            Log.d("DashboardActivity", "FoodKakis mode selected")
         }
 
         binding.selectCorpconnect.setOnClickListener {
@@ -129,14 +132,90 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
-        // cravings chips
-        entryChips()
 
+        // Android Searchable Multi Select Spinner
+//        val items = ArrayList<SearchableItem>()
+        val items = arrayListOf<SearchableItem>(
+            SearchableItem("Western Cuisine", "0"),
+            SearchableItem("Indian Cuisine", "1"),
+            SearchableItem("Chinese Cuisine", "2"),
+            SearchableItem("Malay Cuisine", "3"),
+            SearchableItem("Japanese Cuisine", "4"),
+            SearchableItem("Korean Cuisine", "5"),
+            SearchableItem("Italian Cuisine", "6"),
+            SearchableItem("Mexican Cuisine", "7"),
+            SearchableItem("Thai Cuisine", "8"),
+            SearchableItem("Indo Cuisine", "9"),
+            SearchableItem("Spicy Food", "10"),
+            SearchableItem("Soups", "11"),
+            SearchableItem("Rice", "12"),
+            SearchableItem("Noodles", "13"),
+            SearchableItem("Dessert", "14"),
+            SearchableItem("Coffee", "15"),
+            SearchableItem("Bubble Tea", "16"),
+            SearchableItem("Deep Fried", "17"),
+            SearchableItem("Vegetarian", "18"),
+            SearchableItem("Seafood", "19`"),
+            SearchableItem("Chicken", "20"),
+            SearchableItem("Duck", "21"),
+            SearchableItem("Beef", "22"),
+            SearchableItem("Mutton", "23"),
+            SearchableItem("Fast Food", "24"),
+            SearchableItem("Cakes", "25")
+        )
+//        for (i in 0..20) {
+//            items.add(SearchableItem("Item $i", "$i"))
+//        }
+        binding.cravingsSelection.setOnClickListener {
+            SearchableMultiSelectSpinner.show(this, "Select Items","Done", items, object :
+                SelectionCompleteListener {
+                override fun onCompleteSelection(selectedItems: ArrayList<SearchableItem>) {
+                    if (selectedItems.size > 3) {
+                        Toast.makeText(applicationContext, "Max of 3 cravings", Toast.LENGTH_SHORT).show()
+                        Log.w("Cravings", "Exceeded 3 cravings quota")
+                    } else {
+                        Log.e("data", selectedItems.toString())
+                        for(item in selectedItems) {
+                            if(chipsCounter > 0) {
+                                createMyChips(item.text)
+                                cravingsArray.add(item.text)
+                            }
+                            else {
+                                Toast.makeText(applicationContext, "Max of 3 cravings", Toast.LENGTH_SHORT).show()
+                                Log.w("Cravings", "Exceeded 3 cravings quota")
+                            }
+                        }
+                    }
+
+                }
+
+            })
+        }
+
+
+
+
+
+        fun isEmpty(etText: EditText ): Boolean {
+            return etText.getText().toString().trim().length == 0;
+        }
 
 
 
         binding.findBtn.setOnClickListener {
-            if (!emptySelection && selectedMode != "null") {
+            if (emptySelection) {
+                Toast.makeText(applicationContext, "Select Timeslot!", Toast.LENGTH_SHORT).show()
+                Log.d("FindButton", "Timeslot not selected")
+            }
+            else if (selectedMode == "null") {
+                Toast.makeText(applicationContext, "Select Mode!", Toast.LENGTH_SHORT).show()
+                Log.d("FindButton", "Mode not selected")
+            }
+            else if (isEmpty(binding.availDateFill)) {
+                Toast.makeText(applicationContext, "Select Date!", Toast.LENGTH_SHORT).show()
+                Log.d("FindButton", "Date not selected")
+            }
+            else if (!emptySelection && selectedMode != "null") {
                 val date = binding.availDateFill.text.toString().replace('/','.')
                 val storeAt = db.collection(selectedMode).document(date)
                     .collection(timeSlot.toString()).document(currentUserUid)
@@ -274,6 +353,7 @@ class DashboardActivity : AppCompatActivity() {
         val chip = Chip(this)
         chip.setEnsureMinTouchTargetSize(true)
         chip.apply {
+            chipsCounter--
             text = txt
             chipIcon = ContextCompat.getDrawable(
                 this@DashboardActivity,
@@ -291,19 +371,36 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-    private fun entryChips() {
-        binding.addButton.setOnClickListener {
-            if (chipsCounter > 0) {
-                val cravings = binding.cravingSearch.text.toString()
-                createMyChips(cravings)
-                cravingsArray.add(cravings)
-                binding.cravingSearch.text.clear()
-                chipsCounter--
-            } else {
-                Toast.makeText(this, "Max of 3 cravings", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+//    fun readCSV() {
+//
+//
+//        csvReader().open("res/assets/food.csv") {
+//
+//            readAllAsSequence().forEach { row ->
+//
+//                for (e in row) {
+//                    print("$e ")
+//                }
+//
+//                println()
+//            }
+//        }
+//    }
+
+    // Old method for manual input of cravings
+//    private fun entryChips() {
+//        binding.addButton.setOnClickListener {
+//            if (chipsCounter > 0) {
+//                val cravings = binding.cravingSearch.text.toString()
+//                createMyChips(cravings)
+//                cravingsArray.add(cravings)
+//                binding.cravingSearch.text.clear()
+////                chipsCounter--
+//            } else {
+//                Toast.makeText(this, "Max of 3 cravings", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
 
 
 

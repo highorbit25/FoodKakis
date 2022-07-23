@@ -22,27 +22,19 @@ object FirebaseProfileService {
             db.collection("users")
                 .document(userId).get().await().toCard()
         } catch (e: Exception) {
-//            Log.e(TAG, "Error getting user details", e)
-//            FirebaseCrashlytics.getInstance().log("Error getting user details")
-//            FirebaseCrashlytics.getInstance().setCustomKey("user id", xpertSlug)
-//            FirebaseCrashlytics.getInstance().recordException(e)
             null
         }
     }
 
     suspend fun getMatches(): List<TinderContactCardModel> {
-//    suspend fun getMatches(): ArrayList<TinderContactCardModel> {
         val db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
         val currentUserUid = mAuth.currentUser?.uid.toString()
         // retrieve details of the request
         val docRef = db.collection("users").document(currentUserUid)
-//        var matchesArray = ArrayList<QueryDocumentSnapshot>()
-//        docRef.get().addOnSuccessListener { doc -> matchesArray = doc.get("matchesArray") as ArrayList<QueryDocumentSnapshot> }
         return try {
-//            db.collection("users").get().await().documents.mapNotNull { it.toCard() }
-
             db.collection("users")
+                .whereEqualTo("active_request", true)
                 .whereEqualTo("selected_mode", getDoc(currentUserUid)!!.get("selected_mode") as String)
                 .whereEqualTo("date", getDoc(currentUserUid)!!.get("date") as String)
                 .whereEqualTo("timeslot", getDoc(currentUserUid)!!.get("timeslot") as String)
@@ -54,11 +46,7 @@ object FirebaseProfileService {
 
         } catch (e: Exception) {
             Log.e("TinderContactCardModel", "Error getting list of matches", e)
-//            FirebaseCrashlytics.getInstance().log("Error getting user friends")
-//            FirebaseCrashlytics.getInstance().setCustomKey("user id", xpertSlug)
-//            FirebaseCrashlytics.getInstance().recordException(e)
             ArrayList<TinderContactCardModel>()
-//            emptyList<TinderContactCardModel>()
         }
     }
 
@@ -70,10 +58,6 @@ object FirebaseProfileService {
             db.collection("users")
                 .document(userId).get().await()
         } catch (e: Exception) {
-//            Log.e(TAG, "Error getting user details", e)
-//            FirebaseCrashlytics.getInstance().log("Error getting user details")
-//            FirebaseCrashlytics.getInstance().setCustomKey("user id", xpertSlug)
-//            FirebaseCrashlytics.getInstance().recordException(e)
             null
         }
     }
@@ -87,10 +71,6 @@ object FirebaseProfileService {
                 .whereEqualTo("name", getDoc(currentUserUid)!!.get("name") as String)
                 .whereArrayContains("swiped_on", userId).limit(1).get().await().documents.isNotEmpty()
         } catch (e: Exception) {
-//            Log.e(TAG, "Error getting user details", e)
-//            FirebaseCrashlytics.getInstance().log("Error getting user details")
-//            FirebaseCrashlytics.getInstance().setCustomKey("user id", xpertSlug)
-//            FirebaseCrashlytics.getInstance().recordException(e)
             null
         }
     }

@@ -188,13 +188,18 @@
 
         </LinearLayout>
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:isScrollContainer="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/text_indicateavail"
@@ -255,11 +260,36 @@
                 android:textStyle="bold" />
 
 
+            <EditText
+                android:id="@+id/cravings_selection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:drawableLeft="@drawable/ic_search"
+                android:text="  Select up to 3 cravings" />
+
+            <Spinner
+                android:id="@+id/craving_for_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_weight="1"
+                android:autofillHints="@string/from"
+                android:dropDownWidth="wrap_content"
+                android:spinnerMode="dropdown"
+                android:visibility="gone"
+                tools:ignore="SpeakableTextPresentCheck" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <EditText
                     android:id="@+id/cravingSearch"
@@ -299,7 +329,7 @@
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/cravingEntries"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="1dp"
@@ -322,7 +352,7 @@
             </LinearLayout>
 
         </LinearLayout>
-
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

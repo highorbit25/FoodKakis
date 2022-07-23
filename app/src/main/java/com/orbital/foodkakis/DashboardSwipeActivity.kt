@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.TransitionAdapter
@@ -53,6 +54,27 @@ class DashboardSwipeActivity : AppCompatActivity() {
         binding = ActivityDashboardSwipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         generateViewModel()
+
+        binding.cancelButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Are you sure you want to cancel request?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") {
+                        dialog, id ->
+                    mAuth = FirebaseAuth.getInstance()
+                    val db = Firebase.firestore
+                    val currentUserUid = mAuth.currentUser?.uid.toString()
+                    db.collection("users").document(currentUserUid).update("active_request", false)
+                    val dashboardIntent= Intent(this, DashboardActivity::class.java)
+                    startActivity(dashboardIntent)
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    // Dismiss the dialog
+                    dialog.dismiss()
+                }
+            val alert = builder.create()
+            alert.show()
+        }
 
 
 
@@ -281,18 +303,6 @@ class DashboardSwipeActivity : AppCompatActivity() {
                         db.collection("users").document(curMatchId).update("active_request", false)
                         Log.d("MutualSwipe", "Removed active_request for $currentUserUid & $curMatchId")
 
-                        // Remove swiped_on array for both matched users
-//                        val deleteSwipedArray = hashMapOf<String, Any>(
-//                            "swiped_on" to arrayListOf<String>()
-//                        )
-//                        db.collection("users").document(currentUserUid).update(deleteSwipedArray).addOnCompleteListener {
-//                            Log.d("MutualSwipe", "Removed swiped_on array for $currentUserUid")
-//                        }
-//                        db.collection("users").document(curMatchId).update(deleteSwipedArray)
-//                        db.collection("users").document(currentUserUid).update("swiped_on", null)
-//                        db.collection("users").document(curMatchId).update("swiped_on", null)
-//                        Log.d("MutualSwipe", "Removed swiped_on array for $currentUserUid & $curMatchId")
-
                         startConvo(curMatchId)
                         Thread.sleep(1_000)
 
@@ -336,13 +346,7 @@ class DashboardSwipeActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Log.w("SwipedLeftOn", "Error adding to swiped left list", e)
                 }
-
-
-
-
             motionLayout.transitionToState(R.id.unlike)
-
-
         }
     }
 

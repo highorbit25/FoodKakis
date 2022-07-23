@@ -16,13 +16,10 @@ import kotlinx.coroutines.launch
 
 
 private lateinit var mAuth: FirebaseAuth
-//private lateinit var data: ArrayList<TinderContactCardModel>
 private lateinit var dataArray: ArrayList<TinderContactCardModel>
 private lateinit var list: List<TinderContactCardModel>
-//class TinderContactViewModel(private val dataArray: ArrayList<TinderContactCardModel>): ViewModel() {
 class TinderContactViewModel(): ViewModel() {
 
-    val repository = TinderContactRepository()
     val db = Firebase.firestore
 
 
@@ -58,10 +55,6 @@ class TinderContactViewModel(): ViewModel() {
 
     private var currentIndex = 0
 
-//    private val topCard
-//        get() = data[currentIndex % data.size]
-//    private val bottomCard
-//        get() = data[(currentIndex + 1) % data.size]
     private val topCard
         get() = dataArray[currentIndex % dataArray.size]
     private val bottomCard
