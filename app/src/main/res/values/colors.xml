@@ -13,9 +13,9 @@
 <!--    <color name="fk_orange">#F66B0E</color>-->
 <!--    <color name="fk_white">#EFEFEF</color>-->
 
-    <color name="colorPrimary">#205375</color>
-    <color name="colorPrimaryDark">#112B3C</color>
-    <color name="colorAccent">#F66B0E</color>
+    <color name="colorPrimary">#FF205375</color>
+    <color name="colorPrimaryDark">#FF112B3C</color>
+    <color name="colorAccent">#FFF66B0E</color>
 
     <color name="black">#000000</color>
     <color name="gray">#EFEFEF</color>

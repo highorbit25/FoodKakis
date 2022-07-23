@@ -68,5 +68,7 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="prefer_not_to_say">Prefer not to say</string>
+    <string name="latest_fnb_deals"><![CDATA[Latest F&B Deals]]></string>
+    <string name="refer_to_the_below_mentioned_for_the_full_terms_conditions_of_the_f_b_campaign"><![CDATA[Refer to the below-mentioned for the full Terms & Conditions of the F&B campaign]]></string>
     <!--    <string name="default_web_client_id">319959386482-fn880e8p7u7hjv83hcbgen6r4hhhs0eb.apps.googleusercontent.com</string>-->
 </resources>
