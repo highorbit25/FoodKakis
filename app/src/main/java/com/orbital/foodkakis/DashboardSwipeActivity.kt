@@ -363,8 +363,8 @@ class DashboardSwipeActivity : AppCompatActivity() {
         val userBRef = db.collection("users").document(curMatchId)
         var nameOfA: String
         var nameOfB: String
-        val cravingsOfA = ArrayList<String>()
-        val cravingsOfB = ArrayList<String>()
+        var cravingsOfA = ArrayList<String>()
+        var cravingsOfB = ArrayList<String>()
         var timeslot: String
         var date: String
 
@@ -373,6 +373,10 @@ class DashboardSwipeActivity : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 if (document != null) {
                     nameOfA = document.get("name") as String
+                    val arrayA = document.get("cravings") as ArrayList<String>
+                    for (c in arrayA) {
+                        cravingsOfA.add(c)
+                    }
                     Log.d("GetUserAData", "Retrieved user A data: ${document.data}")
                 } else {
                     Log.d("GetUserAData", "Cannot retrieve user A data")
@@ -388,7 +392,13 @@ class DashboardSwipeActivity : AppCompatActivity() {
                     nameOfB = document.get("name") as String
                     date = document.get("date") as String
                     timeslot = document.get("timeslot") as String
+                    val arrayB = document.get("cravings") as ArrayList<String>
+                    for (c in arrayB) {
+                        cravingsOfB.add(c)
+                    }
                     Log.d("GetUserBData", "Retrieved user B data: ${document.data}")
+
+
 
                     // Start chat between matched users
                     val receiverID: String = curMatchId
@@ -400,13 +410,34 @@ class DashboardSwipeActivity : AppCompatActivity() {
 
                     CometChat.sendMessage(textMessage, object : CometChat.CallbackListener<TextMessage>() {
                         override fun onSuccess(p0: TextMessage?) {
-                            Log.d(ContentValues.TAG, "Starting message sent successfully: " + p0?.toString())
+                            Log.d("StartingMessage", "Starting message sent successfully: " + p0?.toString())
+
+                            // Send common cravings through text
+                            val commonCravings = cravingsOfA.intersect(cravingsOfB)
+                            val commonCount = commonCravings.size
+                            Log.d("CommonCravings", "$commonCount Common cravings are: ${commonCravings.toString().replace("[", "").replace("]", "")}")
+
+                            if (commonCount > 0) {
+                                val cravingsText: String = "Great news! We are both craving for ${commonCravings.toString().replace("[", "").replace("]", "")}"
+                                val cravingsMessage = TextMessage(receiverID, cravingsText,receiverType)
+                                CometChat.sendMessage(cravingsMessage, object : CometChat.CallbackListener<TextMessage>() {
+                                    override fun onSuccess(p0: TextMessage?) {
+                                        Log.d("CravingsMessage", "Cravings message sent successfully: " + p0?.toString())
+                                    }
+
+                                    override fun onError(p0: CometChatException?) {
+                                        Log.d("CravingsMessage", "Cravings message failed with exception: " + p0?.message)          }
+
+                                })
+                            }
                         }
 
                         override fun onError(p0: CometChatException?) {
-                            Log.d(ContentValues.TAG, "Starting message failed with exception: " + p0?.message)          }
+                            Log.d("StartingMessage", "Starting message failed with exception: " + p0?.message)          }
 
                     })
+
+
 
                 } else {
                     Log.d("GetUserBData", "Cannot retrieve user B data")
