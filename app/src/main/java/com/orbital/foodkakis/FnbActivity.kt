@@ -36,19 +36,6 @@ class FnbActivity : AppCompatActivity() {
 
         eventChangeListener()
 
-
-
-
-//        binding.spotlight.setOnClickListener {
-//
-//        }
-
-
-
-
-
-
-
         // Logic for Navigation Bar
         binding.bottomNavigationView.selectedItemId = R.id.fnb
         binding.bottomNavigationView.setOnItemSelectedListener { item ->

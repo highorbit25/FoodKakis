@@ -39,7 +39,7 @@ class EditProfileActivity : AppCompatActivity() {
     private var curYear = currentDate[Calendar.YEAR]
     private var month = currentDate[Calendar.MONTH]
     private var day = currentDate[Calendar.DAY_OF_MONTH]
-    private var age = 0;
+    private var age = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,7 +106,7 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         // Logic for Navigation Bar
-        binding.bottomNavigationView.setSelectedItemId(R.id.me)
+        binding.bottomNavigationView.selectedItemId = R.id.me
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.dashboard-> {
@@ -173,7 +173,7 @@ class EditProfileActivity : AppCompatActivity() {
                             updatedUser.avatar = url.toString()
                             CometChat.updateCurrentUserDetails(updatedUser, object : CometChat.CallbackListener<User>() {
                                 override fun onSuccess(user: User) {
-                                    Log.d("CometPhoto", "${user.toString()} Photo updated" )
+                                    Log.d("CometPhoto", "$user Photo updated" )
                                 }
 
                                 override fun onError(e: CometChatException) {

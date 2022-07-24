@@ -1,14 +1,13 @@
 package com.orbital.foodkakis
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityForgetBinding
-import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class ForgetActivity : AppCompatActivity() {
 
@@ -18,8 +17,6 @@ class ForgetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityForgetBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
         binding.btnResetAccount.setOnClickListener {
             val email = binding.emailForgot.text.toString()
@@ -35,7 +32,5 @@ class ForgetActivity : AppCompatActivity() {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 }

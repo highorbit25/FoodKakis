@@ -1,49 +1,33 @@
 package com.orbital.foodkakis
 
-import android.content.ContentValues
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.TransitionAdapter
 import androidx.core.net.toUri
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.cometchat.pro.constants.CometChatConstants
 import com.cometchat.pro.core.CometChat
 import com.cometchat.pro.exceptions.CometChatException
 import com.cometchat.pro.models.TextMessage
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.*
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.orbital.foodkakis.FirebaseProfileService.getDoc
-import com.orbital.foodkakis.FirebaseProfileService.getMatches
 import com.orbital.foodkakis.databinding.ActivityDashboardSwipeBinding
 import kotlinx.android.synthetic.main.activity_dashboard_swipe.*
-import kotlinx.android.synthetic.main.activity_dashboard_swipe.view.*
-import kotlinx.android.synthetic.main.activity_edit_profile.*
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.coroutines.tasks.await
-
-//import kotlinx.android.synthetic.main.activity_tinder_scene9.*
-
-//import kotlinx.android.synthetic.main.activity_tinder_scene9.*
-
 
 
 class DashboardSwipeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardSwipeBinding
     private lateinit var mAuth: FirebaseAuth
-//    private val matchesArray = ArrayList<String>()
     private lateinit var viewModel: TinderContactViewModel
     private lateinit var currentProfile: TinderContactCardModel
     private var curMatchId = "Null"
@@ -56,11 +40,11 @@ class DashboardSwipeActivity : AppCompatActivity() {
         generateViewModel()
 
         binding.cancelButton.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(this,R.style.AlertDialogTheme)
             builder.setMessage("Are you sure you want to cancel request?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") {
-                        dialog, id ->
+                        _, _ ->
                     mAuth = FirebaseAuth.getInstance()
                     val db = Firebase.firestore
                     val currentUserUid = mAuth.currentUser?.uid.toString()
@@ -68,15 +52,13 @@ class DashboardSwipeActivity : AppCompatActivity() {
                     val dashboardIntent= Intent(this, DashboardActivity::class.java)
                     startActivity(dashboardIntent)
                 }
-                .setNegativeButton("No") { dialog, id ->
+                .setNegativeButton("No") { dialog, _ ->
                     // Dismiss the dialog
                     dialog.dismiss()
                 }
             val alert = builder.create()
             alert.show()
         }
-
-
 
         // Logic for Navigation Bar
         binding.bottomNavigationView.selectedItemId = R.id.dashboard
@@ -119,8 +101,7 @@ class DashboardSwipeActivity : AppCompatActivity() {
         Log.i("DashboardSwipeActivity", "Called ViewModelProvider.get")
         viewModel = ViewModelProvider(this).get(TinderContactViewModel::class.java)
 
-
-
+        // Monitor card
         viewModel
             .modelStream
             .observe(this, Observer {
@@ -128,6 +109,7 @@ class DashboardSwipeActivity : AppCompatActivity() {
                 bindCard(it)
             })
 
+        // Monitor finish
         viewModel
             .finish
             .observe(this, Observer {
@@ -136,7 +118,7 @@ class DashboardSwipeActivity : AppCompatActivity() {
                     val db = Firebase.firestore
                     val currentUserUid = mAuth.currentUser?.uid.toString()
                     // check if it is still an active request
-                    var active = false
+                    var active: Boolean
                     db.collection("users").document(currentUserUid).get().addOnSuccessListener {
                         doc -> active = doc.get("active_request") as Boolean
                         Log.d("NoMoreMatches", "Active Request: $active")
@@ -148,10 +130,6 @@ class DashboardSwipeActivity : AppCompatActivity() {
                             startActivity(noMoreMatchesIntent)
                         }
                     }
-
-
-
-
                 }
             })
 
@@ -161,7 +139,7 @@ class DashboardSwipeActivity : AppCompatActivity() {
                     R.id.offScreenUnlike,
                     R.id.offScreenLike -> {
                         if (currentId == R.id.offScreenUnlike) {
-                            Toast.makeText(getApplicationContext(), "Swiped Left on ${name.text} $curMatchId", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Swiped Left on ${name.text} $curMatchId", Toast.LENGTH_SHORT).show()
                             // Just add curMatch to user's swiped left list
                             mAuth = FirebaseAuth.getInstance()
                             val db = Firebase.firestore
@@ -188,7 +166,7 @@ class DashboardSwipeActivity : AppCompatActivity() {
                             motionLayout.setTransition(R.id.start, R.id.detail)
                             viewModel.swipe()
                         } else if (currentId == R.id.offScreenLike) {
-                            Toast.makeText(getApplicationContext(), "Swiped Right on ${name.text} $curMatchId", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Swiped Right on ${name.text} $curMatchId", Toast.LENGTH_SHORT).show()
                             // Add curMatch to user's swiped right list
                             mAuth = FirebaseAuth.getInstance()
                             val db = Firebase.firestore
@@ -307,16 +285,14 @@ class DashboardSwipeActivity : AppCompatActivity() {
                         Thread.sleep(1_000)
 
                         // Redirect to Matches Activity
-                        val MatchesIntent = Intent(this, MatchesActivity::class.java)
-                        startActivity(MatchesIntent)
+                        val matchesIntent = Intent(this, MatchesActivity::class.java)
+                        startActivity(matchesIntent)
                     } else {
                         Log.d("MutualSwipe", "No Mutual Swipe between $currentUserUid & $curMatchId as of now")
                     }
 
                 }
-
             motionLayout.transitionToState(R.id.like)
-
         }
 
         unlikeFloating.setOnClickListener {
@@ -361,10 +337,10 @@ class DashboardSwipeActivity : AppCompatActivity() {
         val currentUserUid = mAuth.currentUser?.uid.toString()
         val userARef = db.collection("users").document(currentUserUid)
         val userBRef = db.collection("users").document(curMatchId)
-        var nameOfA: String
+//        var nameOfA: String
         var nameOfB: String
-        var cravingsOfA = ArrayList<String>()
-        var cravingsOfB = ArrayList<String>()
+        val cravingsOfA = ArrayList<String>()
+        val cravingsOfB = ArrayList<String>()
         var timeslot: String
         var date: String
 
@@ -372,7 +348,7 @@ class DashboardSwipeActivity : AppCompatActivity() {
         userARef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    nameOfA = document.get("name") as String
+//                    nameOfA = document.get("name") as String
                     val arrayA = document.get("cravings") as ArrayList<String>
                     for (c in arrayA) {
                         cravingsOfA.add(c)
@@ -398,8 +374,6 @@ class DashboardSwipeActivity : AppCompatActivity() {
                     }
                     Log.d("GetUserBData", "Retrieved user B data: ${document.data}")
 
-
-
                     // Start chat between matched users
                     val receiverID: String = curMatchId
                     val messageText: String = "Hello $nameOfB, we have matched as FoodKakis for $date at" +
@@ -413,12 +387,12 @@ class DashboardSwipeActivity : AppCompatActivity() {
                             Log.d("StartingMessage", "Starting message sent successfully: " + p0?.toString())
 
                             // Send common cravings through text
-                            val commonCravings = cravingsOfA.intersect(cravingsOfB)
+                            val commonCravings = cravingsOfA.intersect(cravingsOfB.toSet())
                             val commonCount = commonCravings.size
                             Log.d("CommonCravings", "$commonCount Common cravings are: ${commonCravings.toString().replace("[", "").replace("]", "")}")
 
                             if (commonCount > 0) {
-                                val cravingsText: String = "Great news! We are both craving for ${commonCravings.toString().replace("[", "").replace("]", "")}"
+                                val cravingsText = "Great news! We are both craving for ${commonCravings.toString().replace("[", "").replace("]", "")}"
                                 val cravingsMessage = TextMessage(receiverID, cravingsText,receiverType)
                                 CometChat.sendMessage(cravingsMessage, object : CometChat.CallbackListener<TextMessage>() {
                                     override fun onSuccess(p0: TextMessage?) {
@@ -431,14 +405,10 @@ class DashboardSwipeActivity : AppCompatActivity() {
                                 })
                             }
                         }
-
                         override fun onError(p0: CometChatException?) {
                             Log.d("StartingMessage", "Starting message failed with exception: " + p0?.message)          }
 
                     })
-
-
-
                 } else {
                     Log.d("GetUserBData", "Cannot retrieve user B data")
                 }
@@ -446,8 +416,6 @@ class DashboardSwipeActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.d("GetUserBData", "get failed with ", exception)
             }
-
-
     }
 
 }

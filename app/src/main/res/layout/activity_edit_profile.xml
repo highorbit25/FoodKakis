@@ -42,7 +42,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/update_photo_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/custom_btn"
         android:paddingLeft="10dp"
@@ -50,6 +50,7 @@
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
         android:text="@string/update_photo"
+        android:textSize="13sp"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         android:textColor="@color/colorPrimary"
@@ -206,7 +207,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/update_profile_btn"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="50dp"
@@ -218,6 +219,7 @@
                 android:paddingRight="10dp"
                 android:paddingBottom="5dp"
                 android:text="@string/update_profile"
+                android:textSize="13sp"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"

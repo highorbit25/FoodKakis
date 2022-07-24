@@ -43,13 +43,9 @@ class ProfileActivity : AppCompatActivity() {
                 Log.d("GetUserData", "get failed with ", exception)
             }
 
-//        name_txt.text = currentUser?.displayName
         email_txt.text = currentUser?.email
 
         getImage()
-//        Glide.with(this).load(currentUser?.photoUrl).into(profile_image)
-
-
 
         edit_profile_btn.setOnClickListener {
             val intent = Intent(this, EditProfileActivity::class.java)
@@ -63,10 +59,8 @@ class ProfileActivity : AppCompatActivity() {
             finish()
         }
 
-
-
         // Logic for Navigation Bar
-        binding.bottomNavigationView.setSelectedItemId(R.id.me)
+        binding.bottomNavigationView.selectedItemId = R.id.me
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.dashboard-> {
@@ -88,10 +82,6 @@ class ProfileActivity : AppCompatActivity() {
             }
             true
         }
-
-
-
-
     }
 
     private fun getImage() {
@@ -102,6 +92,4 @@ class ProfileActivity : AppCompatActivity() {
             Glide.with(this).load(it).into(profile_image)
         }
     }
-
-
 }

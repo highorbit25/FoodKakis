@@ -39,14 +39,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/containerCardOne">>
+            android:id="@+id/containerCardOne">
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Check back later! No more matches to swipe!"
+                android:text="@string/check_back_later_no_more_matches_to_swipe"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold"

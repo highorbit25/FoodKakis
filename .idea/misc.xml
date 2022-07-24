@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable-v24/ic_baseline_dashboard_24.xml" value="0.1855" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1155" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable-v24/modeSelect.xml" value="0.1255" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/arrow_back_24px.xml" value="0.1" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/blue_btn.xml" value="0.1255" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/button_selector.xml" value="0.1595" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/custom_btn.xml" value="0.242" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/favorite_border_24px.xml" value="0.2295" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/highlight_off_24px.xml" value="0.2295" />
@@ -17,13 +19,15 @@
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/ic_matches.xml" value="0.242" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/ic_signin_background.xml" value="0.141" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/ic_welcome.xml" value="0.246" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/new_btn.xml" value="0.1595" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/round_add.xml" value="0.2525" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/settings_btm.xml" value="0.124" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/settings_btn.xml" value="0.124" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/drawable/white_btn.xml" value="0.1525" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout-v28/activity_dashboard_no_more_matches.xml" value="0.13496376811594202" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_dashboard.xml" value="0.22" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_dashboard_no_more_matches.xml" value="0.22" />
-        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_dashboard_swipe.xml" value="0.10666666666666667" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_dashboard_swipe.xml" value="0.1" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_describe_yourself.xml" value="0.18070652173913043" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_fnb.xml" value="0.22604166666666667" />
@@ -32,7 +36,7 @@
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_main2.xml" value="0.1875" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_matches.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_profile.xml" value="0.22" />
-        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_sign_in.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_tell_us_bday.xml" value="0.16757246376811594" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/activity_tell_us_name.xml" value="0.16666666666666666" />
@@ -55,6 +59,7 @@
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/post_details.xml" value="0.22" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/layout/tinder_scene1.xml" value="0.1" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1155" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/drawable/ic_baseline_person_24.xml" value="0.169" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/drawable/tab_background_state.xml" value="0.1855" />
         <entry key="..\:/Users/baobi/AndroidStudioProjects/FoodKakis/uikit-kotlin/src/main/res/drawable/tab_layout_background.xml" value="0.1855" />

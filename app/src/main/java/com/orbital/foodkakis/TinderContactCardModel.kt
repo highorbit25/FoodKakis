@@ -16,7 +16,6 @@ data class TinderContactCardModel(
     val imageUrl: String,
     @ColorInt val backgroundColor: Int) : Parcelable {
 
-
     companion object {
         fun DocumentSnapshot.toCard(): TinderContactCardModel? {
             try {
@@ -26,13 +25,16 @@ data class TinderContactCardModel(
 //                val age = getString("age")!!
                 val age = get("age") as Long
                 val description = getString("description")!!
-                return TinderContactCardModel(id, name, age, description, imageUrl, Color.parseColor("#205375"))
-//                return TinderContactCardModel(name, age, description, Color.parseColor("#c60055"))
+                return TinderContactCardModel(
+                    id,
+                    name,
+                    age,
+                    description,
+                    imageUrl,
+                    Color.parseColor("#205375")
+                )
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
-                //            FirebaseCrashlytics.getInstance().log("Error converting user profile")
-                //            FirebaseCrashlytics.getInstance().setCustomKey("userId", id)
-                //            FirebaseCrashlytics.getInstance().recordException(e)
                 return null
             }
         }

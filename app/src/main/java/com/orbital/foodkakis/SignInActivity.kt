@@ -2,11 +2,10 @@ package com.orbital.foodkakis
 
 import android.content.ContentValues
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.cometchat.pro.core.AppSettings
+import androidx.appcompat.app.AppCompatActivity
 import com.cometchat.pro.core.CometChat
 import com.cometchat.pro.exceptions.CometChatException
 import com.cometchat.pro.models.User
@@ -16,9 +15,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivitySignInBinding
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
@@ -52,7 +48,6 @@ class SignInActivity : AppCompatActivity() {
 
         //Firebase Auth instance
         mAuth = FirebaseAuth.getInstance()
-        val currentUser = mAuth.currentUser
 
         binding.createAccText.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
@@ -67,7 +62,7 @@ class SignInActivity : AppCompatActivity() {
 
                 mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val isNewUser: Boolean? = it.getResult()?.additionalUserInfo?.isNewUser
+                        val isNewUser: Boolean? = it.result?.additionalUserInfo?.isNewUser
                         if (isNewUser!!) {
                             val intent = Intent(this, TellUsNameActivity::class.java)
                             startActivity(intent)
@@ -116,7 +111,7 @@ class SignInActivity : AppCompatActivity() {
             }
 
             override fun onError(e: CometChatException) {
-                Log.d(ContentValues.TAG, "Login failed with exception: " + e.message);
+                Log.d(ContentValues.TAG, "Login failed with exception: " + e.message)
             }
         })
     }
@@ -145,7 +140,6 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
-        val db = Firebase.firestore
 
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)

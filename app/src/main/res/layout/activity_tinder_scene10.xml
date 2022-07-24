@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layoutDescription="@xml/tinder_scene9"
     app:motionDebug="SHOW_ALL"
-    tools:context=".TinderScene10Activity">
+    tools:context=".motionlayout.TinderScene10Activity">
 
 <!--    <com.google.android.material.card.MaterialCardView-->
 <!--        android:id="@+id/cardTwo"-->

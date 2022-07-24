@@ -2,19 +2,15 @@ package com.orbital.foodkakis
 
 import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.cometchat.pro.core.AppSettings
 import com.cometchat.pro.core.CometChat
 import com.cometchat.pro.exceptions.CometChatException
 import com.cometchat.pro.models.User
-import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.orbital.foodkakis.TinderScene10Activity
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onError(e: CometChatException) {
-                Log.d(TAG, "Login failed with exception: " + e.message);
+                Log.d(TAG, "Login failed with exception: " + e.message)
             }
         })
 

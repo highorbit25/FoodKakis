@@ -19,16 +19,10 @@ private lateinit var mAuth: FirebaseAuth
 private lateinit var dataArray: ArrayList<TinderContactCardModel>
 private lateinit var list: List<TinderContactCardModel>
 class TinderContactViewModel(): ViewModel() {
-
     val db = Firebase.firestore
-
-
-
     private val stream = MutableLiveData<TinderContactModel>()
-
     val modelStream: LiveData<TinderContactModel>
         get() = stream
-
     private val _finish = MutableLiveData<Boolean>()
     val finish: LiveData<Boolean>
         get() = _finish
@@ -52,14 +46,12 @@ class TinderContactViewModel(): ViewModel() {
 //        )
 //    )
 
-
     private var currentIndex = 0
 
     private val topCard
         get() = dataArray[currentIndex % dataArray.size]
     private val bottomCard
         get() = dataArray[(currentIndex + 1) % dataArray.size]
-
 
     fun swipe() {
         currentIndex += 1
@@ -81,27 +73,8 @@ class TinderContactViewModel(): ViewModel() {
 
     }
 
-
     init {
         viewModelScope.launch {
-            mAuth = FirebaseAuth.getInstance()
-            val currentUserUid = mAuth.currentUser?.uid.toString()
-            val docRef = db.collection("users").document(currentUserUid)
-            var selectedMode: String? = null
-            var date: String? = null
-            var timeSlot: String? = null
-            val matchesArray = ArrayList<QueryDocumentSnapshot>()
-
-            docRef.get()
-                .addOnSuccessListener { document ->
-                    if (document.get("active_request") == true) {
-                        selectedMode = document.get("selected_mode") as String?
-                        date = document.get("date") as String?
-                        timeSlot = document.get("timeslot") as String?
-                        Log.d("GetActiveReq", "Retrieved active request: ${document.data}")
-                    }
-                }
-
             list = FirebaseProfileService.getMatches()
             dataArray = ArrayList<TinderContactCardModel>(list)
             Log.w("viewModelScope", "got list from Firebase ")
@@ -120,6 +93,4 @@ class TinderContactViewModel(): ViewModel() {
             updateCards()
         }
     }
-
-
 }

@@ -1,18 +1,12 @@
 package com.orbital.foodkakis
 
-import android.graphics.Color
 import android.util.Log
-import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.auth.User
-import com.google.firebase.firestore.ktx.toObjects
-import com.orbital.foodkakis.FirebaseProfileService.getProfileData
 import com.orbital.foodkakis.TinderContactCardModel.Companion.toCard
 import kotlinx.coroutines.tasks.await
+
 private lateinit var mAuth: FirebaseAuth
 object FirebaseProfileService {
     private const val TAG = "FirebaseProfileService"
@@ -31,7 +25,6 @@ object FirebaseProfileService {
         mAuth = FirebaseAuth.getInstance()
         val currentUserUid = mAuth.currentUser?.uid.toString()
         // retrieve details of the request
-        val docRef = db.collection("users").document(currentUserUid)
         return try {
             db.collection("users")
                 .whereEqualTo("active_request", true)
@@ -49,8 +42,6 @@ object FirebaseProfileService {
             ArrayList<TinderContactCardModel>()
         }
     }
-
-
 
     suspend fun getDoc(userId: String): DocumentSnapshot? {
         val db = FirebaseFirestore.getInstance()
@@ -74,7 +65,4 @@ object FirebaseProfileService {
             null
         }
     }
-
-
-
 }

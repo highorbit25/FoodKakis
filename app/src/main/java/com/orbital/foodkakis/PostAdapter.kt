@@ -5,15 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_profile.*
-import java.time.format.TextStyle
 
 class PostAdapter(private val postList: ArrayList<Post>): RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostAdapter.PostViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -35,7 +30,7 @@ class PostAdapter(private val postList: ArrayList<Post>): RecyclerView.Adapter<P
         return postList.size
     }
 
-    public class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val image : ImageView = itemView.findViewById(R.id.tvImage)
         val header : TextView = itemView.findViewById(R.id.tvHeader)

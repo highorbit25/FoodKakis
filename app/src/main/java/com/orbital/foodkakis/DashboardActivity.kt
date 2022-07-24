@@ -21,7 +21,6 @@ import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityDashboardBinding
 import java.text.SimpleDateFormat
 import java.util.*
-import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 
 
 class DashboardActivity : AppCompatActivity() {
@@ -32,6 +31,7 @@ class DashboardActivity : AppCompatActivity() {
     private var year = currentDate[Calendar.YEAR]
     private var month = currentDate[Calendar.MONTH]
     private var day = currentDate[Calendar.DAY_OF_MONTH]
+    private var today = currentDate.timeInMillis
     private var chipsCounter = 3
     private val cravingsArray = ArrayList<String>()
     private val swipedRightOnArray = ArrayList<String>()
@@ -50,8 +50,6 @@ class DashboardActivity : AppCompatActivity() {
         val currentUserUid = mAuth.currentUser?.uid.toString()
         val db = Firebase.firestore
         val activeReq = db.collection("users").document(currentUserUid)
-
-//        readCSV()
 
 //         check if there is existing request, if there is redirect to DashboardSwipeActivity
         activeReq.get()
@@ -134,7 +132,6 @@ class DashboardActivity : AppCompatActivity() {
 
 
         // Android Searchable Multi Select Spinner
-//        val items = ArrayList<SearchableItem>()
         val items = arrayListOf<SearchableItem>(
             SearchableItem("Western Cuisine", "0"),
             SearchableItem("Indian Cuisine", "1"),
@@ -163,9 +160,7 @@ class DashboardActivity : AppCompatActivity() {
             SearchableItem("Fast Food", "24"),
             SearchableItem("Cakes", "25")
         )
-//        for (i in 0..20) {
-//            items.add(SearchableItem("Item $i", "$i"))
-//        }
+
         binding.cravingsSelection.setOnClickListener {
             SearchableMultiSelectSpinner.show(this, "Select Items","Done", items, object :
                 SelectionCompleteListener {
@@ -192,15 +187,9 @@ class DashboardActivity : AppCompatActivity() {
             })
         }
 
-
-
-
-
         fun isEmpty(etText: EditText ): Boolean {
-            return etText.getText().toString().trim().length == 0;
+            return etText.getText().toString().trim().length == 0
         }
-
-
 
         binding.findBtn.setOnClickListener {
             if (emptySelection) {
@@ -298,8 +287,6 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
-
-
         // Logic for Navigation Bar
         binding.bottomNavigationView.selectedItemId = R.id.dashboard
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
@@ -339,7 +326,7 @@ class DashboardActivity : AppCompatActivity() {
             }, year, month, day
         )
 
-        mDatePicker.datePicker.minDate = currentDate.timeInMillis
+        mDatePicker.datePicker.minDate = today
 
         mDatePicker.show()
         mDatePicker.getButton(AlertDialog.BUTTON_POSITIVE)
@@ -370,38 +357,4 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
     }
-
-//    fun readCSV() {
-//
-//
-//        csvReader().open("res/assets/food.csv") {
-//
-//            readAllAsSequence().forEach { row ->
-//
-//                for (e in row) {
-//                    print("$e ")
-//                }
-//
-//                println()
-//            }
-//        }
-//    }
-
-    // Old method for manual input of cravings
-//    private fun entryChips() {
-//        binding.addButton.setOnClickListener {
-//            if (chipsCounter > 0) {
-//                val cravings = binding.cravingSearch.text.toString()
-//                createMyChips(cravings)
-//                cravingsArray.add(cravings)
-//                binding.cravingSearch.text.clear()
-////                chipsCounter--
-//            } else {
-//                Toast.makeText(this, "Max of 3 cravings", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
-
-
-
 }

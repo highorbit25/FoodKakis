@@ -1,15 +1,13 @@
 package com.orbital.foodkakis
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.orbital.foodkakis.databinding.ActivityDescribeYourselfBinding
-import java.util.*
 
 class DescribeYourselfActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -28,7 +26,7 @@ class DescribeYourselfActivity : AppCompatActivity() {
         binding.nextButton.setOnClickListener {
             val userRef = db.collection("users").document(currentUserUid)
             val describeYourself = binding.descriptionFill.text.toString()
-            if (describeYourself != null) {
+            if (describeYourself != "") {
                 // Set the "description" field of the user
                 userRef
                     .update("description", describeYourself)

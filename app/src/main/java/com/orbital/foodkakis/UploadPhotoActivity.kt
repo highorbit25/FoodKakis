@@ -18,7 +18,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.orbital.foodkakis.databinding.ActivityUploadPhotoBinding
-import kotlinx.android.synthetic.main.activity_dashboard_swipe.*
 import kotlinx.android.synthetic.main.activity_upload_photo.*
 
 class UploadPhotoActivity : AppCompatActivity() {
@@ -27,8 +26,6 @@ class UploadPhotoActivity : AppCompatActivity() {
     private var mSelectedImageFileUri: Uri? = null
     private lateinit var currentUserUid: String
     private lateinit var binding: ActivityUploadPhotoBinding
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +47,6 @@ class UploadPhotoActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-
-
-
     }
 
 
@@ -94,13 +87,12 @@ class UploadPhotoActivity : AppCompatActivity() {
                                 .addOnSuccessListener { Log.d("UploadPhoto", "Photo uri updated for: $currentUserUid") }
                                 .addOnFailureListener { e -> Log.w("UploadPhoto", "Error updating photo uri", e) }
 
-
                             // Update photo for Comet here
                             val updatedUser = User()
                             updatedUser.avatar = url.toString()
                             CometChat.updateCurrentUserDetails(updatedUser, object : CometChat.CallbackListener<User>() {
                                 override fun onSuccess(user: User) {
-                                    Log.d("CometPhoto", "${user.toString()} Photo updated" )
+                                    Log.d("CometPhoto", "$user Photo updated" )
                                 }
 
                                 override fun onError(e: CometChatException) {
@@ -113,13 +105,8 @@ class UploadPhotoActivity : AppCompatActivity() {
                     binding.profileImage.visibility = View.VISIBLE
                     Toast.makeText(this, "Photo upload failed", Toast.LENGTH_SHORT).show()
                 }
-
-
-
         } else {
             Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
         }
-
     }
-
 }

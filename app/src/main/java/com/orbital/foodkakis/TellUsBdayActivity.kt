@@ -26,7 +26,7 @@ class TellUsBdayActivity : AppCompatActivity() {
     private var curYear = currentDate[Calendar.YEAR]
     private var month = currentDate[Calendar.MONTH]
     private var day = currentDate[Calendar.DAY_OF_MONTH]
-    private var age = 0;
+    private var age = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,7 @@ class TellUsBdayActivity : AppCompatActivity() {
             val userRef = db.collection("users").document(currentUserUid)
             val birthday = binding.tellUsBdayFill.text.toString()
 
-            if (birthday != null) {
+            if (birthday != "") {
                 // Set the "birthday" field of the user
                 userRef
                     .update("birthday", birthday)

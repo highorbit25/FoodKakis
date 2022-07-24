@@ -84,7 +84,7 @@
         android:layout_height="37dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="A link will be sent to the registered Email to reset your account"
+        android:text="@string/a_link_will_be_sent_to_the_registered_email_to_reset_your_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"

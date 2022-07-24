@@ -269,8 +269,9 @@
                 android:focusable="false"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:drawableLeft="@drawable/ic_search"
-                android:text="  Select up to 3 cravings" />
+                android:drawableStart="@drawable/ic_search"
+                android:text="@string/select_up_to_3_cravings"
+                android:importantForAutofill="no" />
 
             <Spinner
                 android:id="@+id/craving_for_spinner"
@@ -344,7 +345,7 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="3dp"
                     android:layout_weight="1"
-                    android:background="@drawable/custom_btn"
+                    android:background="@drawable/blue_btn"
                     android:stateListAnimator="@null"
                     android:text="@string/find_me_a_kaki"
                     android:textColor="@color/colorPrimary"
