@@ -23,9 +23,6 @@ class PostAdapter(private val postList: ArrayList<Post>): RecyclerView.Adapter<P
 
     override fun onBindViewHolder(holder: PostAdapter.PostViewHolder, position: Int) {
         val post : Post = postList[position]
-//        holder.image.
-//        holder.image.setImageURI(post.image!!.toUri())
-//        Glide.
         Glide.with(holder.itemView.context)
             .load(post.image)
             .centerCrop()

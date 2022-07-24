@@ -88,7 +88,7 @@ class FnbActivity : AppCompatActivity() {
 
 
             }
-        db.collection("posts").whereEqualTo("spotlight", false)
+        db.collection("posts").whereEqualTo("spotlight", false).whereEqualTo("active", true)
             .addSnapshotListener(object : EventListener<QuerySnapshot>{
                     override fun onEvent(
                         value: QuerySnapshot?,
