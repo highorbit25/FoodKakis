@@ -1,21 +1,17 @@
 package com.orbital.foodkakis
 
-import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bumptech.glide.Glide.init
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.orbital.foodkakis.DashboardSwipeActivity
 import kotlinx.coroutines.launch
 
 
-private lateinit var mAuth: FirebaseAuth
+
 private lateinit var dataArray: ArrayList<TinderContactCardModel>
 private lateinit var list: List<TinderContactCardModel>
 class TinderContactViewModel(): ViewModel() {
@@ -69,8 +65,6 @@ class TinderContactViewModel(): ViewModel() {
                 cardBottom = bottomCard
             )
         }
-
-
     }
 
     init {
@@ -79,11 +73,6 @@ class TinderContactViewModel(): ViewModel() {
             dataArray = ArrayList<TinderContactCardModel>(list)
             Log.w("viewModelScope", "got list from Firebase ")
             println(list.size.toString())
-            for (card in list) {
-                println(card.name)
-                println(card.age)
-                println(card.description)
-            }
             println(dataArray.size.toString())
             for (card in dataArray) {
                 println(card.name)

@@ -33,6 +33,7 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var binding: ActivityEditProfileBinding
     private lateinit var currentUserUid: String
+    private lateinit var bdaySaved: String
     private var mSelectedImageFileUri: Uri? = null
     private val currentDate: Calendar = Calendar.getInstance()
     private var year = currentDate[Calendar.YEAR]
@@ -51,6 +52,7 @@ class EditProfileActivity : AppCompatActivity() {
         currentUserUid = mAuth.currentUser?.uid.toString()
         val db = Firebase.firestore
         val docRef = db.collection("users").document(currentUserUid)
+//        var bdaySaved: String
 
         getImage()
 
@@ -59,6 +61,7 @@ class EditProfileActivity : AppCompatActivity() {
                 if (document != null) {
                     edit_profile_name_fill.text = document.get("name") as CharSequence?
                     edit_profile_gender_fill.text = document.get("gender") as CharSequence?
+                    bdaySaved = (document.get("birthday") as CharSequence?).toString()
                     edit_profile_bday_fill.setText(document.get("birthday") as CharSequence?)
                     edit_profile_desc_fill.setText(document.get("description") as CharSequence?)
                     Log.d("GetUserData", "Retrieved user data: ${document.data}")
@@ -80,22 +83,23 @@ class EditProfileActivity : AppCompatActivity() {
             val birthday = binding.editProfileBdayFill.text.toString()
             val desc = binding.editProfileDescFill.text.toString()
 
-            if (birthday != "" && desc != "") {
-                // Set the "birthday" & 'description" field of the user
-                docRef
-                    .update("birthday", birthday)
-                    .addOnSuccessListener { Log.d("EditBday", "Birthday updated for: $currentUserUid") }
-                    .addOnFailureListener { e -> Log.w("EditBday", "Error updating birthday", e) }
-                // Set the "age" field of the user
-                docRef
-                    .update("age", age)
-                    .addOnSuccessListener { Log.d("TellUsBday", "Age updated for: $currentUserUid") }
-                    .addOnFailureListener { e -> Log.w("TellUsBday", "Error updating age", e) }
+            if (desc != "") {
                 docRef
                     .update("description", desc)
                     .addOnSuccessListener { Log.d("EditDesc", "Description updated for: $currentUserUid") }
                     .addOnFailureListener { e -> Log.w("EditDesc", "Error updating description", e) }
-
+                if (birthday != bdaySaved) {
+                    // Set the "birthday" & 'description" field of the user
+                    docRef
+                        .update("birthday", birthday)
+                        .addOnSuccessListener { Log.d("EditBday", "Birthday updated for: $currentUserUid") }
+                        .addOnFailureListener { e -> Log.w("EditBday", "Error updating birthday", e) }
+                    // Set the "age" field of the user
+                    docRef
+                        .update("age", age)
+                        .addOnSuccessListener { Log.d("TellUsBday", "Age updated for: $currentUserUid") }
+                        .addOnFailureListener { e -> Log.w("TellUsBday", "Error updating age", e) }
+                }
                 Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
             }
 

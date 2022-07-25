@@ -226,6 +226,7 @@ class DashboardSwipeActivity : AppCompatActivity() {
                                     }
 
                                 }
+                            viewModel.swipe()
                         }
                     }
                 }
