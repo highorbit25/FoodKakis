@@ -52,6 +52,7 @@ class TinderContactViewModel(): ViewModel() {
     fun swipe() {
         currentIndex += 1
         updateCards()
+        Log.d("TEST", "update cards called")
     }
 
     private fun updateCards() {

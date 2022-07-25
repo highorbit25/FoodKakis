@@ -223,10 +223,12 @@ class DashboardSwipeActivity : AppCompatActivity() {
                                         goMatches()
                                     } else {
                                         Log.d("MutualSwipe", "No Mutual Swipe between $currentUserUid & $curMatchId as of now")
+                                        motionLayout.progress = 0f
+                                        motionLayout.setTransition(R.id.start, R.id.detail)
+                                        viewModel.swipe()
                                     }
 
                                 }
-                            viewModel.swipe()
                         }
                     }
                 }
