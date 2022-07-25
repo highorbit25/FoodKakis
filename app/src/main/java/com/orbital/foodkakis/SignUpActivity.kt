@@ -23,7 +23,6 @@ class SignUpActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
 
-
         if(user != null){
             val profileIntent = Intent(this, ProfileActivity::class.java)
             startActivity(profileIntent)

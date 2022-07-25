@@ -11,89 +11,108 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FoodKakis"
-        tools:targetApi="31">
+        android:theme="@style/AppTheme"
+        tools:targetApi="31"
+        android:requestLegacyExternalStorage="true">
+        <activity
+            android:name=".DashboardNoMoreMatches"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.cometchat.pro.uikit.ui_components.messages.forward_message.CometChatForwardMessageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".UploadPhotoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DashboardSwipeActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".FnbActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TinderScene1Activity"
-            android:exported="false" />
-        <activity
-            android:name=".TinderScene2Activity"
-            android:exported="false" />
-        <activity
-            android:name=".TinderScene3Activity"
-            android:exported="false" />
-        <activity
-            android:name=".TinderScene4Activity"
-            android:exported="false" />
-        <activity
-            android:name=".TinderScene5Activity"
-            android:exported="false" />
-        <activity
-            android:name=".TinderScene6Activity"
-            android:exported="false" />
-        <activity
-            android:name=".TinderScene7Activity"
-            android:exported="false" />
-        <activity
-            android:name=".TinderScene8Activity"
-            android:exported="false" />
-        <activity
-            android:name=".TinderScene9Activity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
-        <activity
-            android:name=".TinderScene10Activity"
-            android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:screenOrientation="portrait"/>
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene1Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene2Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene3Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene4Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene5Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene6Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene7Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene8Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene9Activity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".motionlayout.TinderScene10Activity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MatchesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".EditProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DescribeYourselfActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".TellUsBdayActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".WhatGenderActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".TellUsNameActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ForgetActivity"
             android:exported="false"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SignUpActivity"
             android:exported="false"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DashboardActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SignInActivity"
             android:exported="false"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,10 +1,11 @@
 package com.orbital.foodkakis
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.orbital.foodkakis.databinding.ActivityDashboardSwipeBinding
+import androidx.appcompat.app.AppCompatActivity
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI
 import com.orbital.foodkakis.databinding.ActivityMatchesBinding
+
 
 class MatchesActivity : AppCompatActivity() {
 
@@ -14,6 +15,8 @@ class MatchesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        startActivity(Intent(this, CometChatUI::class.java))
 
         // Logic for Navigation Bar
         binding.bottomNavigationView.selectedItemId = R.id.matches

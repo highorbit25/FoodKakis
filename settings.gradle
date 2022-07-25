@@ -10,7 +10,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "https://dl.cloudsmith.io/public/cometchat/cometchat-pro-android/maven/"
+        }
+        maven { url "https://jitpack.io" }
+        maven { url "https://github.com/doyaaaaaken/kotlin-csv" }
     }
 }
 rootProject.name = "FoodKakis"
 include ':app'
+include ':uikit-kotlin'

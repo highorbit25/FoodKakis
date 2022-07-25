@@ -7,317 +7,353 @@
     tools:context=".DashboardActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="412dp"
-        android:layout_height="114dp"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/linearLayout"
+            android:layout_width="412dp"
+            android:layout_height="114dp"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:cropToPadding="false"
-            android:scaleX="2"
-            android:scaleY="2"
-            app:srcCompat="@drawable/foodkakis_logo_red"
-            android:contentDescription="@string/logo" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/dashboard_top_bar_foodkakis"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="24dp"-->
-<!--            android:gravity="center"-->
-<!--            android:text="@string/foodkakis"-->
-<!--            android:textColor="#FFFFFF"-->
-<!--            android:textSize="34sp"-->
-<!--            android:textStyle="bold" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/dashboard_top_bar_connect"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="2dp"-->
-<!--            android:gravity="center"-->
-<!--            android:text="@string/connect_through_food"-->
-<!--            android:textColor="#FFFFFF"-->
-<!--            android:textStyle="italic" />-->
-
-    </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/mode_of_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/choose_mode_of_connection"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="225dp"
-        android:layout_marginStart="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mode_of_text">
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="UselessParent">
-
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@android:drawable/list_selector_background"
-                android:divider="@drawable/empty_tall_divider"
-                android:orientation="horizontal"
-                android:showDividers="middle">
+                android:contentDescription="@string/logo"
+                android:cropToPadding="false"
+                android:scaleX="2"
+                android:scaleY="2"
+                app:srcCompat="@drawable/foodkakis_logo_red" />
 
-                <LinearLayout
-                    android:id="@+id/select_foodkakis"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <!--        <TextView-->
+            <!--            android:id="@+id/dashboard_top_bar_foodkakis"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="24dp"-->
+            <!--            android:gravity="center"-->
+            <!--            android:text="@string/foodkakis"-->
+            <!--            android:textColor="#FFFFFF"-->
+            <!--            android:textSize="34sp"-->
+            <!--            android:textStyle="bold" />-->
 
-                    <ImageView
-                        android:id="@+id/foodkakis_mode_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/mode_select"
-                        android:contentDescription="@string/foodkakis_mode_image"
-                        app:srcCompat="@drawable/foodkakis_mode_image"
-                        tools:srcCompat="@drawable/foodkakis_mode_image" />
+            <!--        <TextView-->
+            <!--            android:id="@+id/dashboard_top_bar_connect"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="2dp"-->
+            <!--            android:gravity="center"-->
+            <!--            android:text="@string/connect_through_food"-->
+            <!--            android:textColor="#FFFFFF"-->
+            <!--            android:textStyle="italic" />-->
 
-                    <TextView
-                        android:id="@+id/mode_foodkakis"
-                        android:layout_width="125dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/foodkakis"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/mode_foodkaki_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:singleLine="false"
-                        android:text="@string/matched_according_to_availability_amp_food_preference"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/select_corpconnect"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/corpconnect_mode_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/corpconnect_mode_image"
-                        app:srcCompat="@drawable/corpconnect_mode_image"
-                        tools:srcCompat="@drawable/corpconnect_mode_image" />
-
-                    <TextView
-                        android:id="@+id/mode_corpconnect"
-                        android:layout_width="125dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/corporateconnect"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/mode_corpconnect_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:singleLine="false"
-                        android:text="@string/seek_out_corporate_connections_amp_network_with_peers_in_your_field"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/select_surprise"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/surpriseme_mode_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/surpriseme_mode_image"
-                        app:srcCompat="@drawable/surpriseme_mode_image"
-                        tools:srcCompat="@drawable/surpriseme_mode_image" />
-
-                    <TextView
-                        android:id="@+id/mode_surpriseme"
-                        android:layout_width="125dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/surpriseme"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/mode_surpriseme_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:singleLine="false"
-                        android:text="@string/catered_to_spontaneous_meetups"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </HorizontalScrollView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
-
-        <TextView
-            android:id="@+id/text_indicateavail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
-            android:text="@string/indicate_your_availability"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/availDateFill"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginHorizontal="16dp"
-            android:ems="10"
-            android:focusableInTouchMode="false"
-            android:hint="@string/date"
-            android:importantForAutofill="no"
-            android:inputType="text|date"
-            android:textColorHighlight="@color/colorPrimary"
-            android:textColorLink="@color/colorPrimaryDark" />
-
-        <TextView
-            android:id="@+id/text_timeslot"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
-            android:text="@string/select_timeslot"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/time_from_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
-            android:autofillHints="@string/from"
-            android:dropDownWidth="wrap_content"
-            android:spinnerMode="dropdown"
-            android:visibility="visible"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/text_cravingFor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
-            android:text="@string/craving_for"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/cravingSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                android:hint="@string/add_up_to_3_cravings"
-                android:singleLine="true"
-                android:text=""
-                android:importantForAutofill="no"
-                android:inputType="textCapWords"
-                tools:ignore="NestedWeights" />
-
-            <ImageButton
-                android:id="@+id/addButton"
-                style="@style/Widget.AppCompat.ImageButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="3"
-                android:background="@drawable/round_add"
-                app:srcCompat="@drawable/ic_baseline_add_24"
-                app:tint="#FFFFFF"
-                android:contentDescription="@string/add_cravings_button" />
         </LinearLayout>
 
+
+        <TextView
+            android:id="@+id/mode_of_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/choose_mode_of_connection"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mode_of_text">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:drawable/list_selector_background"
+                    android:divider="@drawable/empty_tall_divider"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <LinearLayout
+                        android:id="@+id/select_foodkakis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/foodkakis_mode_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/mode_select"
+                            android:contentDescription="@string/foodkakis_mode_image"
+                            app:srcCompat="@drawable/foodkakis_mode_image"
+                            tools:srcCompat="@drawable/foodkakis_mode_image" />
+
+                        <TextView
+                            android:id="@+id/mode_foodkakis"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/foodkakis"
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/mode_foodkaki_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:singleLine="false"
+                            android:text="@string/matched_according_to_availability_amp_food_preference"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/select_corpconnect"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/corpconnect_mode_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/corpconnect_mode_image"
+                            app:srcCompat="@drawable/corpconnect_mode_image"
+                            tools:srcCompat="@drawable/corpconnect_mode_image" />
+
+                        <TextView
+                            android:id="@+id/mode_corpconnect"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/corporateconnect"
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/mode_corpconnect_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:singleLine="false"
+                            android:text="@string/seek_out_corporate_connections_amp_network_with_peers_in_your_field"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/select_surprise"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/surpriseme_mode_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/surpriseme_mode_image"
+                            app:srcCompat="@drawable/surpriseme_mode_image"
+                            tools:srcCompat="@drawable/surpriseme_mode_image" />
+
+                        <TextView
+                            android:id="@+id/mode_surpriseme"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/surpriseme"
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/mode_surpriseme_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:singleLine="false"
+                            android:text="@string/catered_to_spontaneous_meetups"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:isScrollContainer="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cravingEntries"
+            <TextView
+                android:id="@+id/text_indicateavail"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="3dp"
-                app:layout_constraintEnd_toEndOf="@id/cravingSearch"
-                app:layout_constraintStart_toStartOf="@id/cravingSearch"
-                app:layout_constraintTop_toBottomOf="@+id/cravingSearch" />
-
-            <Button
-                android:id="@+id/find_btn"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="3dp"
                 android:layout_weight="1"
-                android:background="@drawable/blue_btn"
-                android:text="@string/find_me_a_kaki"
-                android:textColor="#FFFFFF"
-                tools:ignore="NestedWeights" />
-        </LinearLayout>
+                android:text="@string/indicate_your_availability"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/availDateFill"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp"
+                android:ems="10"
+                android:focusableInTouchMode="false"
+                android:hint="@string/date"
+                android:importantForAutofill="no"
+                android:inputType="text|date"
+                android:textColorHighlight="@color/colorPrimary"
+                android:textColorLink="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/text_timeslot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_weight="1"
+                android:text="@string/select_timeslot"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/time_from_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_weight="1"
+                android:autofillHints="@string/from"
+                android:dropDownWidth="wrap_content"
+                android:spinnerMode="dropdown"
+                android:visibility="visible"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/text_cravingFor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_weight="1"
+                android:text="@string/craving_for"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/cravings_selection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:drawableStart="@drawable/ic_search"
+                android:text="@string/select_up_to_3_cravings"
+                android:importantForAutofill="no" />
+
+            <Spinner
+                android:id="@+id/craving_for_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_weight="1"
+                android:autofillHints="@string/from"
+                android:dropDownWidth="wrap_content"
+                android:spinnerMode="dropdown"
+                android:visibility="gone"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/cravingSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:hint="@string/add_up_to_3_cravings"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapWords"
+                    android:minHeight="48dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColorHint="#757575"
+                    tools:ignore="NestedWeights" />
+
+                <ImageButton
+                    android:id="@+id/addButton"
+                    style="@style/Widget.AppCompat.ImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="3"
+                    android:background="@drawable/round_add"
+                    android:contentDescription="@string/add_cravings_button"
+                    app:srcCompat="@drawable/ic_baseline_add_24"
+                    app:tint="#FFFFFF"
+                    tools:ignore="RedundantDescriptionCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cravingEntries"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="1dp"
+                    app:layout_constraintEnd_toEndOf="@id/cravingSearch"
+                    app:layout_constraintStart_toStartOf="@id/cravingSearch"
+                    app:layout_constraintTop_toBottomOf="@+id/cravingSearch" />
+
+                <Button
+                    android:id="@+id/find_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_btn"
+                    android:stateListAnimator="@null"
+                    android:text="@string/find_me_a_kaki"
+                    android:textColor="@color/colorPrimary"
+                    tools:ignore="NestedWeights" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -330,7 +366,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/cometchat_navigation_bottom" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

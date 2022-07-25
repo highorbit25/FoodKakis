@@ -7,6 +7,21 @@
     tools:context=".MatchesActivity">
 
 
+<!--    <com.cometchat.pro.uikit.ui_components.shared.cometchatConversations.CometChatConversation-->
+<!--        android:id="@+id/cometchatConversation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--        android:layout_height="match_parent" />-->
+
+    <fragment
+        android:id="@+id/conversationList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.cometchat.pro.uikit.ui_components.chats.CometChatConversationList"
+        />
+
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
@@ -18,17 +33,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/cometchat_navigation_bottom" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/work_in_progress_stay_tuned_for_our_next_update"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="280dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:text="@string/work_in_progress_stay_tuned_for_our_next_update"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

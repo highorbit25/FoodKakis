@@ -8,7 +8,8 @@
     android:padding="0dp"
     tools:context=".SignInActivity">
 
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -20,14 +21,16 @@
         android:paddingEnd="40dp"
         android:text="@string/sign_in_with_google"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/button_text"
         android:textSize="16sp"
+        android:stateListAnimator="@null"
         app:icon="@drawable/ic_google"
+        app:iconTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_in_btn_email" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_btn_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -35,17 +38,20 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/blue_btn"
+        app:cornerRadius="50dp"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="@string/sign_in_with_email"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/button_text"
         android:textSize="16sp"
-        app:icon="@drawable/ic_google"
+        android:stateListAnimator="@null"
+        app:iconTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/privacy_agreement" />
+
 
     <ImageView
         android:id="@+id/login_bg"
