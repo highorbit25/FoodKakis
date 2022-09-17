@@ -1,7 +1,9 @@
 # FoodKakis
 Orbital 22 - FoodKakis
+![5112](https://user-images.githubusercontent.com/74848536/190841942-e54856d9-d1f9-40fb-b51f-1a33a0c63450.png)
 
 ## Motivation 
+
 
 The Covid-situation over the past 2 years has ceased many forms of human interactions. As university students ourselves, the interactions and human connections that we encounter in school, be it through physical class or chance encounters, are all significantly reduced. 
 
@@ -49,13 +51,6 @@ Admin’s Perspective:
 
 - As the developer of the app, I want to be able to partner with F&B stores to run promotional campaigns and generate profit from the app.
 
-
-
-
-
-
-
-
 ## Tech Stack
 
 Kotlin
@@ -72,3 +67,11 @@ CometChat UI
 
 
 
+## App Introduction & Video demonstration:
+[Click here to view video](https://tinyurl.com/foodkakis-ms3-vid)
+
+## Try out the app!
+1. Download FoodKakis_MS3.apk [here](https://tinyurl.com/foodkakis-ms3-apk)
+2. On your device, navigate to Settings > Applications > Unknown Sources > Click “Allow”
+3. Locate the APK and install the application
+4. Open FoodKakis app to test out the features
