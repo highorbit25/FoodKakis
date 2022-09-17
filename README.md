@@ -70,6 +70,7 @@ CometChat UI
 ## App Introduction & Video demonstration:
 [Click here to view video](https://tinyurl.com/foodkakis-ms3-vid)
 <video src='https://tinyurl.com/foodkakis-ms3-vid' width=180/>
+<video src="https://drive.google.com/file/d/1HTMZ8k65RhIa213KG09fTqTgnaojyuoI/preview"></video>
 
 ## Try out the app!
 1. Download FoodKakis_MS3.apk [here](https://tinyurl.com/foodkakis-ms3-apk)
